@@ -234,13 +234,53 @@ p {
   margin-top: 22px;
 }
 
-.research-list span {
-  background: var(--tint);
-  border: 1px solid var(--line);
+.research-chip {
+  border: 1px solid transparent;
   border-radius: 8px;
-  color: var(--brand-strong);
   font-weight: 760;
   padding: 8px 12px;
+}
+
+.research-list:not(.is-expanded) .research-extra {
+  display: none;
+}
+
+.research-chip-algorithm {
+  background: #f2e8ff;
+  border-color: #d9c2f3;
+  color: #5d2e87;
+}
+
+.research-chip-system {
+  background: #e6f0ff;
+  border-color: #bdd4f4;
+  color: #1f4d83;
+}
+
+.research-chip-compiler {
+  background: #e6f6ed;
+  border-color: #b9dfc9;
+  color: #246742;
+}
+
+.research-chip-arch {
+  background: #fff3c7;
+  border-color: #ecd783;
+  color: #735a08;
+}
+
+.research-toggle {
+  background: transparent;
+  border: 0;
+  color: var(--brand-strong);
+  cursor: pointer;
+  font-weight: 760;
+  margin-top: 12px;
+  padding: 0;
+}
+
+.research-toggle:hover {
+  color: var(--brand);
 }
 
 .research-visual {

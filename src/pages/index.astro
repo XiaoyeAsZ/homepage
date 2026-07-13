@@ -5,6 +5,9 @@ import { lab } from "@/data/lab";
 import { news } from "@/data/news";
 import { publications } from "@/data/publications";
 import { pathFor } from "@/utils/paths";
+
+const visibleResearchCount = 4;
+const hasHiddenResearchAreas = lab.researchAreas.length > visibleResearchCount;
 ---
 
 <BaseLayout title={lab.name} description={lab.description}>
@@ -14,9 +17,28 @@ import { pathFor } from "@/utils/paths";
         <h1>About Us</h1>
         <p class="lead">{lab.description}</p>
         <p>{lab.tagline}</p>
-        <div class="research-list" aria-label="Research areas">
-          {lab.researchAreas.map((area) => <span>{area}</span>)}
+        <div class="research-list" id="research-list" aria-label="Research areas">
+          {
+            lab.researchAreas.map((area, index) => (
+              <span
+                class:list={[
+                  "research-chip",
+                  `research-chip-${area.type}`,
+                  index >= visibleResearchCount && "research-extra",
+                ]}
+              >
+                {area.name}
+              </span>
+            ))
+          }
         </div>
+        {
+          hasHiddenResearchAreas && (
+            <button class="research-toggle" type="button" aria-expanded="false" aria-controls="research-list">
+              Show more
+            </button>
+          )
+        }
         <div class="hero-actions">
           <a class="button" href={pathFor("/publications/")}
             >View Publications</a
@@ -100,3 +122,15 @@ import { pathFor } from "@/utils/paths";
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const researchList = document.querySelector("#research-list");
+  const researchToggle = document.querySelector<HTMLButtonElement>(".research-toggle");
+
+  researchToggle?.addEventListener("click", () => {
+    const expanded = researchList?.classList.toggle("is-expanded") ?? false;
+
+    researchToggle.setAttribute("aria-expanded", String(expanded));
+    researchToggle.textContent = expanded ? "Hide" : "Show more";
+  });
+</script>
