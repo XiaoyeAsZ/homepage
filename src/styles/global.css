@@ -537,7 +537,7 @@ p {
   color: var(--accent);
   display: flex;
   flex-wrap: wrap;
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 800;
   gap: 8px 18px;
 }
@@ -559,8 +559,8 @@ p {
 
 .member-contact-list {
   display: grid;
-  gap: 8px 18px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 12px;
+  grid-template-columns: repeat(2, max-content);
 }
 
 .member-contact-list a {
