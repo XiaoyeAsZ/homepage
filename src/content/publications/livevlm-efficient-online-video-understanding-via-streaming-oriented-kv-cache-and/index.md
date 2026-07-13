@@ -14,6 +14,7 @@ links:
     href: "https://arxiv.org/abs/2505.15269"
   - label: "Code"
     href: "https://github.com/sjtu-zhao-lab/LiveVLM"
+image: cover.svg
 ---
 
 ## Abstract
