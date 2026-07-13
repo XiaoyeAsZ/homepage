@@ -34,6 +34,10 @@ body {
   min-width: 320px;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 body,
 button,
 input,
@@ -294,13 +298,103 @@ p {
 }
 
 .research-visual img {
-  aspect-ratio: 1;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
+}
+
+.modal-backdrop {
+  align-items: center;
+  background: rgba(36, 23, 21, 0.28);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  opacity: 0;
+  padding: 22px;
+  pointer-events: none;
+  position: fixed;
+  transition: opacity 180ms ease;
+  z-index: 50;
+}
+
+.modal-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.join-modal {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 12px;
+  box-shadow: 0 28px 80px rgba(36, 23, 21, 0.22);
+  display: grid;
+  gap: 22px;
+  max-height: min(86vh, 760px);
+  max-width: min(760px, 100%);
+  overflow: auto;
+  padding: clamp(24px, 4vw, 38px);
+  position: relative;
+  transform: translateY(18px) scale(0.98);
+  transition: transform 180ms ease;
+  width: 100%;
+}
+
+.modal-backdrop.is-open .join-modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  align-items: center;
+  background: var(--tint);
+  border: 0;
+  border-radius: 999px;
+  color: var(--brand-strong);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.3rem;
+  font-weight: 760;
+  height: 36px;
+  justify-content: center;
+  line-height: 1;
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  width: 36px;
+}
+
+.modal-close:hover {
+  background: var(--nav-tint);
+}
+
+.join-modal h2 {
+  margin-right: 42px;
+}
+
+.join-modal>div>p {
+  color: var(--muted);
+  max-width: 660px;
+}
+
+.join-modal-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.join-modal-grid article {
+  background: var(--paper);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.join-modal-grid p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.join-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .section {
@@ -785,6 +879,10 @@ p {
   .grid.four,
   .grid.three,
   .grid.two {
+    grid-template-columns: 1fr;
+  }
+
+  .join-modal-grid {
     grid-template-columns: 1fr;
   }
 
