@@ -11,7 +11,6 @@ import { pathFor } from "@/utils/paths";
   <section class="section intro-section">
     <div class="intro-grid">
       <div>
-        <p class="eyebrow">{lab.institution}</p>
         <h1>About Us</h1>
         <p class="lead">{lab.description}</p>
         <p>{lab.tagline}</p>
@@ -19,7 +18,9 @@ import { pathFor } from "@/utils/paths";
           {lab.researchAreas.map((area) => <span>{area}</span>)}
         </div>
         <div class="hero-actions">
-          <a class="button" href={pathFor("/publications/")}>View Publications</a>
+          <a class="button" href={pathFor("/publications/")}
+            >View Publications</a
+          >
           <a class="button secondary" href={pathFor("/team/")}>Meet the Team</a>
         </div>
       </div>
@@ -60,7 +61,10 @@ import { pathFor } from "@/utils/paths";
       <div class="section-heading">
         <div>
           <h2>Featured Publications</h2>
-          <p>A short list of recent papers. Add DOI, PDF, code, and project links as needed.</p>
+          <p>
+            A short list of recent papers. Add DOI, PDF, code, and project links
+            as needed.
+          </p>
         </div>
         <a class="link" href={pathFor("/publications/")}>All publications</a>
       </div>
