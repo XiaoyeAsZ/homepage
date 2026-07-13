@@ -354,8 +354,8 @@ p {
 }
 
 .home-publication-card:hover {
-  box-shadow: 0 18px 38px rgba(88, 18, 18, 0.12);
-  transform: translateY(-1px);
+  box-shadow: 0 22px 46px rgba(88, 18, 18, 0.16);
+  transform: translateY(-3px) scale(1.015);
 }
 
 .home-publication-card p {
@@ -622,8 +622,8 @@ p {
 }
 
 .home-card:hover {
-  box-shadow: 0 18px 38px rgba(88, 18, 18, 0.12);
-  transform: translateY(-1px);
+  box-shadow: 0 22px 46px rgba(88, 18, 18, 0.16);
+  transform: translateY(-3px) scale(1.015);
 }
 
 .card p,
@@ -796,8 +796,8 @@ p {
 }
 
 .entry-card:hover {
-  box-shadow: 0 18px 38px rgba(88, 18, 18, 0.12);
-  transform: translateY(-1px);
+  box-shadow: 0 22px 46px rgba(88, 18, 18, 0.16);
+  transform: translateY(-3px) scale(1.015);
 }
 
 .publication h2 a,
@@ -848,8 +848,8 @@ p {
 }
 
 .person:hover {
-  box-shadow: 0 18px 38px rgba(88, 18, 18, 0.12);
-  transform: translateY(-1px);
+  box-shadow: 0 22px 46px rgba(88, 18, 18, 0.16);
+  transform: translateY(-3px) scale(1.015);
 }
 
 .member-card:focus-visible {
@@ -1041,5 +1041,12 @@ p {
 @media (prefers-reduced-motion: reduce) {
   .site-header {
     transition: none;
+  }
+
+  .entry-card:hover,
+  .home-card:hover,
+  .home-publication-card:hover,
+  .person:hover {
+    transform: none;
   }
 }
