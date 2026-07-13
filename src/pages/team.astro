@@ -1,7 +1,7 @@
 ---
 import PageHeader from "@/components/PageHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { team } from "@/data/lab";
+import { teamSections } from "@/data/lab";
 import { pathFor } from "@/utils/paths";
 ---
 
@@ -12,19 +12,27 @@ import { pathFor } from "@/utils/paths";
     intro="Add faculty, students, staff, visitors, alumni, and collaborators."
   />
   <section class="section">
-    <div class="grid three">
-      {
-        team.map((person) => (
-          <article class="card person">
-            <img src={pathFor(person.image)} alt={`${person.name} portrait placeholder`} width="480" height="480" />
-            <div>
-              <h2>{person.name}</h2>
-              <div class="meta">{person.role}</div>
-              <p>{person.bio}</p>
-            </div>
-          </article>
-        ))
-      }
-    </div>
+    {
+      teamSections.map((section) => (
+        <section class="team-section" aria-labelledby={`team-${section.title.toLowerCase().replaceAll(" ", "-")}`}>
+          <div class="team-section-heading">
+            <h2 id={`team-${section.title.toLowerCase().replaceAll(" ", "-")}`}>{section.title}</h2>
+            <p>{section.description}</p>
+          </div>
+          <div class="grid three">
+            {section.members.map((person) => (
+              <article class="card person">
+                <img src={pathFor(person.image)} alt={`${person.name} portrait placeholder`} width="480" height="480" />
+                <div>
+                  <h3>{person.name}</h3>
+                  <div class="meta">{person.role}</div>
+                  <p>{person.bio}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))
+    }
   </section>
 </BaseLayout>
