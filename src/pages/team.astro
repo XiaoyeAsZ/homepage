@@ -2,6 +2,8 @@
 import PageHeader from "@/components/PageHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { teamSections } from "@/data/team";
+
+const teamMembers = teamSections.flatMap((section) => section.members);
 ---
 
 <BaseLayout title="Team" description="Lab members">
@@ -20,7 +22,13 @@ import { teamSections } from "@/data/team";
               section.members.map((person) => {
                 const Content = person.Content;
                 return (
-                  <article class="card person">
+                  <article
+                    class="card person member-card"
+                    role="button"
+                    tabindex="0"
+                    data-member-open={person.slug}
+                    aria-controls={`member-modal-${person.slug}`}
+                  >
                     <img src={person.avatar} alt={`${person.name} portrait`} width="480" height="480" />
                     <div>
                       <h3>{person.name}</h3>
@@ -38,4 +46,126 @@ import { teamSections } from "@/data/team";
       ))
     }
   </section>
+
+  {
+    teamMembers.map((person) => {
+      const Content = person.Content;
+      return (
+        <div
+          class="modal-backdrop"
+          id={`member-modal-${person.slug}`}
+          data-member-modal={person.slug}
+          aria-hidden="true"
+        >
+          <article
+            class="member-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`member-modal-title-${person.slug}`}
+          >
+            <button class="modal-close" type="button" aria-label="Close" data-member-close>
+              &times;
+            </button>
+            <div class="member-modal-header">
+              <img
+                class="member-modal-avatar"
+                src={person.avatar}
+                alt={`${person.name} portrait`}
+                width="480"
+                height="480"
+              />
+              <div>
+                <div class="meta">{person.role} · Joined {person.date.slice(0, 7)}</div>
+                <h2 id={`member-modal-title-${person.slug}`}>{person.name}</h2>
+              </div>
+            </div>
+            <div class="entry-content member-modal-body">
+              <Content />
+            </div>
+          </article>
+        </div>
+      );
+    })
+  }
 </BaseLayout>
+
+<script>
+  const memberOpeners = document.querySelectorAll<HTMLElement>("[data-member-open]");
+  const memberModals = document.querySelectorAll<HTMLElement>("[data-member-modal]");
+  let activeMemberOpener: HTMLElement | null = null;
+
+  function getMemberModal(slug: string) {
+    return Array.from(memberModals).find(
+      (modal) => modal.dataset.memberModal === slug,
+    );
+  }
+
+  function openMemberModal(slug: string, opener: HTMLElement) {
+    const modal = getMemberModal(slug);
+
+    if (!modal) {
+      return;
+    }
+
+    activeMemberOpener = opener;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    modal.querySelector<HTMLButtonElement>("[data-member-close]")?.focus();
+  }
+
+  function closeMemberModal(modal: HTMLElement) {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    activeMemberOpener?.focus();
+    activeMemberOpener = null;
+  }
+
+  memberOpeners.forEach((opener) => {
+    opener.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement;
+
+      if (target.closest("a")) {
+        return;
+      }
+
+      openMemberModal(opener.dataset.memberOpen ?? "", opener);
+    });
+
+    opener.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      event.preventDefault();
+      openMemberModal(opener.dataset.memberOpen ?? "", opener);
+    });
+  });
+
+  memberModals.forEach((modal) => {
+    modal.querySelector("[data-member-close]")?.addEventListener("click", () => {
+      closeMemberModal(modal);
+    });
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeMemberModal(modal);
+      }
+    });
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") {
+      return;
+    }
+
+    const openModal = Array.from(memberModals).find((modal) =>
+      modal.classList.contains("is-open"),
+    );
+
+    if (openModal) {
+      closeMemberModal(openModal);
+    }
+  });
+</script>

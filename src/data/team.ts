@@ -54,6 +54,11 @@ const avatarModules = import.meta.glob<string>("../content/team/**/avatar.{avif,
 
 const directoryFromPath = (path: string) => path.slice(0, path.lastIndexOf("/"));
 
+const slugFromPath = (path: string) => {
+  const directory = directoryFromPath(path);
+  return directory.split("/").at(-1) ?? "";
+};
+
 const formatFullDate = (value: string | Date) => {
   if (value instanceof Date) {
     return value.toISOString().slice(0, 10);
@@ -68,6 +73,7 @@ const members = Object.entries(memberModules)
     const avatarEntry = Object.entries(avatarModules).find(([avatarPath]) => directoryFromPath(avatarPath) === directory);
 
     return {
+      slug: slugFromPath(path),
       ...module.frontmatter,
       date: formatFullDate(module.frontmatter.date),
       Content: module.Content,
