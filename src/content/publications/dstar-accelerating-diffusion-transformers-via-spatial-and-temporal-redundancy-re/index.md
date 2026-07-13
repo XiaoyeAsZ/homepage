@@ -8,6 +8,7 @@ topics:
   - "diffusion-model"
   - "accelerator"
   - "redundancy-reduction"
+image: cover.svg
 ---
 
 ## Abstract
