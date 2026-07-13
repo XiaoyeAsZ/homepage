@@ -10,6 +10,7 @@
   --accent: #002b60;
   --gold: #c8a45d;
   --tint: #fff0e8;
+  --nav-tint: #ffe7df;
   --shadow: 0 18px 45px rgba(88, 18, 18, 0.13);
   --content-width: min(1120px, 61.8vw);
   font-family:
@@ -54,9 +55,9 @@ main {
 
 .site-header {
   align-items: center;
-  background: var(--accent);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 8px 24px rgba(0, 43, 96, 0.1);
+  background: var(--nav-tint);
+  border-bottom: 1px solid #f0c8bd;
+  box-shadow: 0 8px 24px rgba(143, 16, 23, 0.06);
   display: flex;
   gap: 24px;
   justify-content: space-between;
@@ -71,7 +72,7 @@ main {
 
 .brand {
   align-items: center;
-  color: white;
+  color: var(--brand-strong);
   display: inline-flex;
   font-weight: 760;
   gap: 10px;
@@ -80,8 +81,8 @@ main {
 
 .brand-mark {
   align-items: center;
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: var(--brand);
+  border: 1px solid var(--brand);
   border-radius: 6px;
   color: white;
   display: inline-flex;
@@ -99,7 +100,7 @@ nav {
 
 nav a {
   border-radius: 6px;
-  color: rgba(255, 255, 255, 0.82);
+  color: #6f2d2d;
   font-size: 0.94rem;
   font-weight: 650;
   padding: 9px 11px;
@@ -107,8 +108,8 @@ nav a {
 
 nav a:hover,
 nav a[aria-current="page"] {
-  background: rgba(255, 255, 255, 0.18);
-  color: white;
+  background: rgba(200, 22, 30, 0.11);
+  color: var(--brand-strong);
 }
 
 .site-footer {
@@ -358,10 +359,9 @@ p {
   bottom: 0;
   content: "";
   height: 3px;
-  left: 50%;
+  left: max(clamp(18px, 5vw, 64px), calc((100% - var(--content-width)) / 2));
   max-width: var(--content-width);
   position: absolute;
-  transform: translateX(-50%);
   width: min(50%, calc(var(--content-width) / 2));
 }
 
