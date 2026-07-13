@@ -3,6 +3,7 @@ name: Chi Zhang
 role: PhD Student
 type: phd
 date: 2026-07-01
+avatar: avatar.svg
 email: czhang@example.edu
 phone: "+86 21 0000 0000"
 links:

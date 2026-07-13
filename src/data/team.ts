@@ -12,6 +12,7 @@ type TeamFrontmatter = {
   role: string;
   type: TeamType;
   date: string | Date;
+  avatar?: string;
   email?: string;
   phone?: string;
   links?: TeamLink[];
@@ -54,7 +55,7 @@ const memberModules = import.meta.glob<TeamMarkdownModule>("../content/team/**/i
   eager: true,
 });
 
-const avatarModules = import.meta.glob<string>("../content/team/**/avatar.{avif,gif,jpeg,jpg,png,svg,webp}", {
+const imageModules = import.meta.glob<string>("../content/team/**/*.{avif,gif,jpeg,jpg,png,svg,webp}", {
   eager: true,
   import: "default",
   query: "?url",
@@ -75,10 +76,22 @@ const formatFullDate = (value: string | Date) => {
   return String(value).slice(0, 10);
 };
 
+const resolveAvatar = (directory: string, filename?: string) => {
+  if (!filename) {
+    return pathFor("/team-placeholder.svg");
+  }
+
+  const normalizedFilename = filename.replace(/^\.\//, "");
+  const avatarEntry = Object.entries(imageModules).find(
+    ([imagePath]) => imagePath === `${directory}/${normalizedFilename}`,
+  );
+
+  return avatarEntry?.[1] ?? pathFor("/team-placeholder.svg");
+};
+
 const members = Object.entries(memberModules)
   .map(([path, module]) => {
     const directory = directoryFromPath(path);
-    const avatarEntry = Object.entries(avatarModules).find(([avatarPath]) => directoryFromPath(avatarPath) === directory);
 
     return {
       slug: slugFromPath(path),
@@ -88,7 +101,7 @@ const members = Object.entries(memberModules)
       phone: module.frontmatter.phone ?? "",
       links: module.frontmatter.links ?? [],
       Content: module.Content,
-      avatar: avatarEntry?.[1] ?? pathFor("/team-placeholder.svg"),
+      avatar: resolveAvatar(directory, module.frontmatter.avatar),
     };
   })
   .sort((a, b) => b.date.localeCompare(a.date) || a.name.localeCompare(b.name));
