@@ -6,8 +6,6 @@ venue: "OSDI 2026, the 20th USENIX Symposium on Operating Systems Design and Imp
 links:
   - label: "Paper"
     href: "https://www.usenix.org/conference/osdi26/presentation/liu-guangda"
-  - label: "PDF"
-    href: "https://www.usenix.org/system/files/osdi26-liu-guangda.pdf"
   - label: "Code"
     href: "https://github.com/sjtu-zhao-lab/ECHO"
 ---

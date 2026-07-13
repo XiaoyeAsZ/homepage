@@ -6,8 +6,6 @@ venue: "NeurIPS 2025, the 39th Annual Conference on Neural Information Processin
 links:
   - label: "Paper"
     href: "https://openreview.net/forum?id=ODCHMTXKHO"
-  - label: "PDF"
-    href: "https://papers.nips.cc/paper_files/paper/2025/file/f588cca6003651c4d4cb75b8554d55ad-Paper-Conference.pdf"
   - label: "Code"
     href: "https://github.com/sjtu-zhao-lab/ParaStep"
 ---

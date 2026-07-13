@@ -6,7 +6,5 @@ venue: "DAC 2023, the 60th Design Automation Conference"
 links:
   - label: "Paper"
     href: "https://dl.acm.org/doi/10.1109/DAC56929.2023.10247957"
-  - label: "Conference"
-    href: "https://60dac.conference-program.com/presentation/?id=RESEARCH095&sess=sess104"
 ---
 
