@@ -537,6 +537,7 @@ p {
   aspect-ratio: 413 / 579;
   background: #f3e5d4;
   border-radius: 8px;
+  height: calc(var(--member-avatar-width) * 579 / 413);
   object-fit: cover;
   width: min(100%, var(--member-avatar-width));
 }
