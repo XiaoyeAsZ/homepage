@@ -24,6 +24,30 @@ export const teamSections = [
     ],
   },
   {
+    title: "PhD Students",
+    description: "Doctoral students and long-term research leads.",
+    members: [
+      {
+        name: "PhD Student",
+        role: "PhD Student",
+        bio: "Add research topic, program year, and contact links.",
+        image: "/team-placeholder.svg",
+      },
+    ],
+  },
+  {
+    title: "PhD Students",
+    description: "Doctoral students and long-term research leads.",
+    members: [
+      {
+        name: "PhD Student",
+        role: "PhD Student",
+        bio: "Add research topic, program year, and contact links.",
+        image: "/team-placeholder.svg",
+      },
+    ],
+  },
+  {
     title: "Master Students",
     description: "Master students working on thesis and research projects.",
     members: [
