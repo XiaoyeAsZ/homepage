@@ -22,9 +22,13 @@ import { publications } from "@/data/publications";
               <div class="entry-content">
                 <Content />
               </div>
-              <div class="pub-links">
-                {paper.links.map((link) => <a href={link.href}>{link.label}</a>)}
-              </div>
+              {
+                paper.links.length > 0 && (
+                  <div class="pub-links">
+                    {paper.links.map((link) => <a href={link.href}>{link.label}</a>)}
+                  </div>
+                )
+              }
             </div>
           </article>
         );
