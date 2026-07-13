@@ -130,9 +130,10 @@ nav a[aria-current="page"] {
 }
 
 .intro-grid {
+  align-items: center;
   display: grid;
   gap: 32px;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.48fr);
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.56fr);
 }
 
 .intro-grid > div {
@@ -213,22 +214,35 @@ p {
   border-color: #e4b5a2;
 }
 
-.contact-panel {
-  align-self: start;
-  background: var(--surface);
+.research-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.research-list span {
+  background: var(--tint);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--brand-strong);
+  font-weight: 760;
+  padding: 8px 12px;
+}
+
+.research-visual {
+  align-self: center;
+  margin: 0;
+}
+
+.research-visual img {
+  aspect-ratio: 1;
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
-  padding: 24px;
-}
-
-.contact-panel h2 {
-  font-size: 1.35rem;
-}
-
-.contact-panel p {
-  color: var(--muted);
-  margin-bottom: 0;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
 }
 
 .section {

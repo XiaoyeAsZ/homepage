@@ -15,28 +15,22 @@ import { pathFor } from "@/utils/paths";
         <h1>About Us</h1>
         <p class="lead">{lab.description}</p>
         <p>{lab.tagline}</p>
+        <div class="research-list" aria-label="Research areas">
+          {lab.researchAreas.map((area) => <span>{area}</span>)}
+        </div>
         <div class="hero-actions">
           <a class="button" href={pathFor("/publications/")}>View Publications</a>
           <a class="button secondary" href={pathFor("/team/")}>Meet the Team</a>
         </div>
       </div>
-      <aside class="contact-panel">
-        <h2>{lab.name}</h2>
-        <p>{lab.address}</p>
-        <p><a class="link" href={`mailto:${lab.email}`}>{lab.email}</a></p>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section alt compact-section">
-    <div class="section-heading">
-      <div>
-        <h2>Research Areas</h2>
-        <p>Core directions and methods that shape our current work.</p>
-      </div>
-    </div>
-    <div class="grid four">
-      {lab.researchAreas.map((area) => <article class="card"><h3>{area}</h3></article>)}
+      <figure class="research-visual">
+        <img
+          src={pathFor("/research-summary.png")}
+          alt="Visual summary of the lab research areas"
+          width="960"
+          height="960"
+        />
+      </figure>
     </div>
   </section>
 
