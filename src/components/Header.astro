@@ -34,3 +34,37 @@ const path = Astro.url.pathname;
     }
   </nav>
 </header>
+
+<script>
+  const mobileHeaderQuery = window.matchMedia("(max-width: 820px)");
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  function updateHeaderVisibility() {
+    const currentScrollY = Math.max(window.scrollY, 0);
+    const scrollingDown = currentScrollY > lastScrollY + 4;
+    const scrollingUp = currentScrollY < lastScrollY - 4;
+
+    if (!mobileHeaderQuery.matches || currentScrollY < 96 || scrollingUp) {
+      document.body.classList.remove("header-hidden");
+    } else if (scrollingDown) {
+      document.body.classList.add("header-hidden");
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  function requestHeaderUpdate() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeaderVisibility);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
+  mobileHeaderQuery.addEventListener("change", () => {
+    document.body.classList.remove("header-hidden");
+    lastScrollY = window.scrollY;
+  });
+</script>
