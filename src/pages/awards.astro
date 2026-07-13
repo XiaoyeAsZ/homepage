@@ -2,6 +2,16 @@
 import PageHeader from "@/components/PageHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { awards } from "@/data/awards";
+
+const awardsByYear = awards.reduce<Record<string, typeof awards>>(
+  (groups, award) => {
+    const year = award.fullDate.slice(0, 4);
+    groups[year] = groups[year] ?? [];
+    groups[year].push(award);
+    return groups;
+  },
+  {},
+);
 ---
 
 <BaseLayout title="Awards" description="Lab awards and recognition">
@@ -9,21 +19,30 @@ import { awards } from "@/data/awards";
     title="Awards"
   />
   <section class="section">
-    {
-      awards.map((award) => {
-        const Content = award.Content;
-        return (
-          <article class="award">
-            <div class="meta">{award.date}</div>
-            <div>
-              <h2>{award.title}</h2>
-              <div class="entry-content">
-                <Content />
-              </div>
+    <div class="year-list">
+      {
+        Object.entries(awardsByYear).map(([year, awardsInYear]) => (
+          <section class="year-group" aria-labelledby={`awards-${year}`}>
+            <h2 class="year-heading" id={`awards-${year}`}>{year}</h2>
+            <div class="entry-card-list">
+              {awardsInYear.map((award) => {
+                const Content = award.Content;
+                return (
+                  <article class="award entry-card award-card">
+                    <div class="meta">{award.date}</div>
+                    <div>
+                      <h3>{award.title}</h3>
+                      <div class="entry-content">
+                        <Content />
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
-          </article>
-        );
-      })
-    }
+          </section>
+        ))
+      }
+    </div>
   </section>
 </BaseLayout>

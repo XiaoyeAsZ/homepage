@@ -3,6 +3,16 @@ import PageHeader from "@/components/PageHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { publications } from "@/data/publications";
 import { pathFor } from "@/utils/paths";
+
+const publicationsByYear = publications.reduce<Record<string, typeof publications>>(
+  (groups, paper) => {
+    const year = paper.fullDate.slice(0, 4);
+    groups[year] = groups[year] ?? [];
+    groups[year].push(paper);
+    return groups;
+  },
+  {},
+);
 ---
 
 <BaseLayout title="Publications" description="Lab publications">
@@ -10,30 +20,37 @@ import { pathFor } from "@/utils/paths";
     title="Publications"
   />
   <section class="section">
-    {
-      publications.map((paper) => {
-        return (
-          <article class="publication">
-            <div class="meta">{paper.date}</div>
-            <div>
-              <h2>
-                <a href={pathFor(`/publications/${paper.slug}/`)}>
-                  {paper.title}
-                </a>
-              </h2>
-              <p>{paper.authors}</p>
-              <p>{paper.venue}</p>
-              {
-                paper.links.length > 0 && (
-                  <div class="pub-links">
-                    {paper.links.map((link) => <a href={link.href}>{link.label}</a>)}
+    <div class="year-list">
+      {
+        Object.entries(publicationsByYear).map(([year, papers]) => (
+          <section class="year-group" aria-labelledby={`publications-${year}`}>
+            <h2 class="year-heading" id={`publications-${year}`}>{year}</h2>
+            <div class="entry-card-list">
+              {papers.map((paper) => (
+                <article class="publication entry-card publication-card">
+                  <div class="meta">{paper.date}</div>
+                  <div>
+                    <h3>
+                      <a href={pathFor(`/publications/${paper.slug}/`)}>
+                        {paper.title}
+                      </a>
+                    </h3>
+                    <p>{paper.authors}</p>
+                    <p>{paper.venue}</p>
+                    {
+                      paper.links.length > 0 && (
+                        <div class="pub-links">
+                          {paper.links.map((link) => <a href={link.href}>{link.label}</a>)}
+                        </div>
+                      )
+                    }
                   </div>
-                )
-              }
+                </article>
+              ))}
             </div>
-          </article>
-        );
-      })
-    }
+          </section>
+        ))
+      }
+    </div>
   </section>
 </BaseLayout>

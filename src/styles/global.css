@@ -422,6 +422,37 @@ p {
   gap: 16px;
 }
 
+.year-list {
+  display: grid;
+  gap: 44px;
+}
+
+.year-group {
+  display: grid;
+  gap: 16px;
+}
+
+.year-heading {
+  align-items: center;
+  color: var(--brand-strong);
+  display: flex;
+  font-size: clamp(1.45rem, 2vw, 1.9rem);
+  gap: 16px;
+  margin: 0;
+}
+
+.year-heading::after {
+  background: linear-gradient(90deg, rgba(200, 22, 30, 0.36), rgba(200, 164, 93, 0.16), transparent);
+  content: "";
+  flex: 1;
+  height: 2px;
+}
+
+.entry-card-list {
+  display: grid;
+  gap: 14px;
+}
+
 .publication,
 .award {
   align-items: start;
@@ -442,6 +473,31 @@ p {
 .publication:first-child,
 .award:first-child {
   padding-top: 0;
+}
+
+.entry-card.publication,
+.entry-card.award {
+  background:
+    linear-gradient(90deg, rgba(200, 22, 30, 0.06), transparent 26%),
+    rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(234, 216, 198, 0.92);
+  border-left: 4px solid rgba(200, 22, 30, 0.55);
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(88, 18, 18, 0.08);
+  padding: 18px 20px;
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+.entry-card.award {
+  background:
+    linear-gradient(90deg, rgba(200, 164, 93, 0.12), transparent 30%),
+    rgba(255, 255, 255, 0.78);
+  border-left-color: rgba(200, 164, 93, 0.78);
+}
+
+.entry-card:hover {
+  box-shadow: 0 18px 38px rgba(88, 18, 18, 0.12);
+  transform: translateY(-1px);
 }
 
 .publication h2 a,
