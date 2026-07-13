@@ -17,7 +17,11 @@ const hasHiddenResearchAreas = lab.researchAreas.length > visibleResearchCount;
         <h1>About Us</h1>
         <p class="lead">{lab.description}</p>
         <p>{lab.tagline}</p>
-        <div class="research-list" id="research-list" aria-label="Research areas">
+        <div
+          class="research-list"
+          id="research-list"
+          aria-label="Research areas"
+        >
           {
             lab.researchAreas.map((area, index) => (
               <span
@@ -34,7 +38,12 @@ const hasHiddenResearchAreas = lab.researchAreas.length > visibleResearchCount;
         </div>
         {
           hasHiddenResearchAreas && (
-            <button class="research-toggle" type="button" aria-expanded="false" aria-controls="research-list">
+            <button
+              class="research-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="research-list"
+            >
               Show more
             </button>
           )
@@ -87,7 +96,7 @@ const hasHiddenResearchAreas = lab.researchAreas.length > visibleResearchCount;
       </div>
       <div>
         {
-          publications.slice(0, 2).map((paper) => (
+          publications.slice(0, 4).map((paper) => (
             <article class="publication">
               <div class="meta">{paper.date}</div>
               <div>
@@ -111,7 +120,7 @@ const hasHiddenResearchAreas = lab.researchAreas.length > visibleResearchCount;
     </div>
     <div class="grid two">
       {
-        awards.slice(0, 2).map((award) => (
+        awards.slice(0, 3).map((award) => (
           <article class="card">
             <div class="meta">{award.date}</div>
             <h3>{award.title}</h3>
@@ -125,7 +134,8 @@ const hasHiddenResearchAreas = lab.researchAreas.length > visibleResearchCount;
 
 <script>
   const researchList = document.querySelector("#research-list");
-  const researchToggle = document.querySelector<HTMLButtonElement>(".research-toggle");
+  const researchToggle =
+    document.querySelector<HTMLButtonElement>(".research-toggle");
 
   researchToggle?.addEventListener("click", () => {
     const expanded = researchList?.classList.toggle("is-expanded") ?? false;
