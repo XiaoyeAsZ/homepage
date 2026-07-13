@@ -2,7 +2,6 @@
 import PageHeader from "@/components/PageHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { publications } from "@/data/publications";
-import { pathFor } from "@/utils/paths";
 
 const monthNames = [
   "January",
@@ -125,11 +124,6 @@ const formatMonth = (month: string) => {
             }
             <div class="entry-content publication-body publication-modal-body">
               <Content />
-            </div>
-            <div class="join-modal-actions">
-              <a class="button secondary" href={pathFor(`/publications/${paper.slug}/`)}>
-                Open full page
-              </a>
             </div>
           </article>
         </div>
