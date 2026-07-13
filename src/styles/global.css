@@ -607,6 +607,10 @@ p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.team-grid {
+  justify-items: center;
+}
+
 .grid.two {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -852,9 +856,11 @@ p {
   display: grid;
   gap: 16px;
   justify-items: center;
+  max-width: 260px;
   padding: 20px;
   text-align: center;
   transition: box-shadow 160ms ease, transform 160ms ease;
+  width: 100%;
 }
 
 .person:hover {

@@ -17,7 +17,7 @@ const teamMembers = teamSections.flatMap((section) => section.members);
           <div class="team-section-heading">
             <h2 id={`team-${section.title.toLowerCase().replaceAll(" ", "-")}`}>{section.title}</h2>
           </div>
-          <div class="grid three">
+          <div class="grid three team-grid">
             {
               section.members.map((person) => {
                 return (
