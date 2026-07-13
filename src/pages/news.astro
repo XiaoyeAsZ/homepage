@@ -1,0 +1,26 @@
+---
+import PageHeader from "@/components/PageHeader.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { news } from "@/data/lab";
+---
+
+<BaseLayout title="News" description="Lab news and announcements">
+  <PageHeader
+    eyebrow="Updates"
+    title="News"
+    intro="Announcements, publications, recruiting updates, and community notes."
+  />
+  <section class="section">
+    <div class="timeline">
+      {
+        news.map((item) => (
+          <article class="card">
+            <div class="meta">{item.date}</div>
+            <h2>{item.title}</h2>
+            <p>{item.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

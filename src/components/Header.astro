@@ -1,0 +1,35 @@
+---
+import { lab } from "@/data/lab";
+import { pathFor } from "@/utils/paths";
+
+const nav = [
+  { href: "/", label: "Home" },
+  { href: "/about/", label: "About" },
+  { href: "/news/", label: "News" },
+  { href: "/publications/", label: "Publications" },
+  { href: "/awards/", label: "Awards" },
+  { href: "/team/", label: "Team" },
+];
+
+const path = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <a class="brand" href={pathFor("/")}>
+    <span class="brand-mark" aria-hidden="true">L</span>
+    <span>{lab.name}</span>
+  </a>
+  <nav aria-label="Primary navigation">
+    {
+      nav.map((item) => {
+        const resolved = pathFor(item.href);
+        const active = item.href === "/" ? path === resolved : path.startsWith(resolved);
+        return (
+          <a href={resolved} aria-current={active ? "page" : undefined}>
+            {item.label}
+          </a>
+        );
+      })
+    }
+  </nav>
+</header>

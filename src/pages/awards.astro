@@ -1,0 +1,26 @@
+---
+import PageHeader from "@/components/PageHeader.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { awards } from "@/data/lab";
+---
+
+<BaseLayout title="Awards" description="Lab awards and recognition">
+  <PageHeader
+    eyebrow="Recognition"
+    title="Awards"
+    intro="Track awards, honors, grants, fellowships, and competition results."
+  />
+  <section class="section">
+    {
+      awards.map((award) => (
+        <article class="award">
+          <div class="meta">{award.year}</div>
+          <div>
+            <h2>{award.title}</h2>
+            <p>{award.description}</p>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+</BaseLayout>

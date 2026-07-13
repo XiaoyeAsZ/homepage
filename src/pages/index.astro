@@ -1,0 +1,101 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { awards, lab, news, publications } from "@/data/lab";
+import { pathFor } from "@/utils/paths";
+---
+
+<BaseLayout title={lab.name} description={lab.description}>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">{lab.institution}</p>
+      <h1>{lab.name}</h1>
+      <p class="lead">{lab.tagline}</p>
+      <div class="hero-actions">
+        <a class="button" href={pathFor("/publications/")}>View Publications</a>
+        <a class="button secondary" href={pathFor("/team/")}>Meet the Team</a>
+      </div>
+    </div>
+    <figure class="hero-visual">
+      <img src={pathFor("/lab-hero.png")} alt="Abstract research lab visualization" width="1200" height="1500" />
+    </figure>
+  </section>
+
+  <section class="section alt">
+    <div class="section-heading">
+      <div>
+        <h2>Research Areas</h2>
+        <p>{lab.description}</p>
+      </div>
+      <a class="link" href={pathFor("/about/")}>About the lab</a>
+    </div>
+    <div class="grid four">
+      {lab.researchAreas.map((area) => <article class="card"><h3>{area}</h3></article>)}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <div>
+        <h2>Latest News</h2>
+        <p>Recent announcements, publications, and lab milestones.</p>
+      </div>
+      <a class="link" href={pathFor("/news/")}>All news</a>
+    </div>
+    <div class="grid three">
+      {
+        news.slice(0, 3).map((item) => (
+          <article class="card">
+            <div class="meta">{item.date}</div>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="section-heading">
+      <div>
+        <h2>Featured Publications</h2>
+        <p>A short list of recent papers. Add DOI, PDF, code, and project links as needed.</p>
+      </div>
+      <a class="link" href={pathFor("/publications/")}>All publications</a>
+    </div>
+    <div>
+      {
+        publications.slice(0, 2).map((paper) => (
+          <article class="publication">
+            <div class="meta">{paper.year}</div>
+            <div>
+              <h3>{paper.title}</h3>
+              <p>{paper.authors}</p>
+              <p>{paper.venue}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <div>
+        <h2>Awards</h2>
+        <p>Recognition for papers, people, projects, and community service.</p>
+      </div>
+      <a class="link" href={pathFor("/awards/")}>All awards</a>
+    </div>
+    <div class="grid two">
+      {
+        awards.slice(0, 2).map((award) => (
+          <article class="card">
+            <div class="meta">{award.year}</div>
+            <h3>{award.title}</h3>
+            <p>{award.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

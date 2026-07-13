@@ -1,0 +1,8 @@
+---
+import { lab } from "@/data/lab";
+---
+
+<footer class="site-footer">
+  <p><strong>{lab.name}</strong> · {lab.institution}</p>
+  <p>{lab.address} · <a href={`mailto:${lab.email}`}>{lab.email}</a></p>
+</footer>

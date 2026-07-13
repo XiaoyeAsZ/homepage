@@ -1,0 +1,31 @@
+---
+import PageHeader from "@/components/PageHeader.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { lab } from "@/data/lab";
+---
+
+<BaseLayout title="About" description={`About ${lab.name}`}>
+  <PageHeader
+    eyebrow="About"
+    title="About the Lab"
+    intro="Use this page for your mission, research philosophy, facilities, collaborations, and student opportunities."
+  />
+  <section class="section">
+    <div class="grid two">
+      <article>
+        <h2>Mission</h2>
+        <p>{lab.description}</p>
+        <p>
+          Replace this skeleton text with a concise overview of the problems your group works on, the
+          methods you use, and the impact you hope to create.
+        </p>
+      </article>
+      <article class="card">
+        <h3>Contact</h3>
+        <p>{lab.institution}</p>
+        <p>{lab.address}</p>
+        <p><a class="link" href={`mailto:${lab.email}`}>{lab.email}</a></p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

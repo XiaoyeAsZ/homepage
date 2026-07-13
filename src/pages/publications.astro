@@ -1,0 +1,30 @@
+---
+import PageHeader from "@/components/PageHeader.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { publications } from "@/data/lab";
+---
+
+<BaseLayout title="Publications" description="Lab publications">
+  <PageHeader
+    eyebrow="Research"
+    title="Publications"
+    intro="List papers, preprints, datasets, systems, code releases, and project pages here."
+  />
+  <section class="section">
+    {
+      publications.map((paper) => (
+        <article class="publication">
+          <div class="meta">{paper.year}</div>
+          <div>
+            <h2>{paper.title}</h2>
+            <p>{paper.authors}</p>
+            <p>{paper.venue}</p>
+            <div class="pub-links">
+              {paper.links.map((link) => <a href={link.href}>{link.label}</a>)}
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+</BaseLayout>
