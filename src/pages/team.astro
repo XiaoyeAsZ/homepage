@@ -71,8 +71,10 @@ const teamMembers = teamSections.flatMap((section) => section.members);
                 height="579"
               />
               <div class="member-modal-detail">
-                <div class="meta">{person.role} · Joined {person.date.slice(0, 7)}</div>
-                <h2 id={`member-modal-title-${person.slug}`}>{person.name}</h2>
+                <div class="member-title-row">
+                  <h2 id={`member-modal-title-${person.slug}`}>{person.name}</h2>
+                  <div class="meta">{person.role} · Joined {person.date.slice(0, 7)}</div>
+                </div>
                 {
                   (person.email || person.phone) && (
                     <div class="member-contact-list" aria-label={`${person.name} contact`}>
