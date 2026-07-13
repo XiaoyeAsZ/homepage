@@ -28,7 +28,7 @@ const teamMembers = teamSections.flatMap((section) => section.members);
                     data-member-open={person.slug}
                     aria-controls={`member-modal-${person.slug}`}
                   >
-                    <img src={person.avatar} alt={`${person.name} portrait`} width="480" height="480" />
+                    <img src={person.avatar} alt={`${person.name} portrait`} width="413" height="579" />
                     <div>
                       <h3>{person.name}</h3>
                       <div class="meta">{person.role} · Joined {person.date.slice(0, 7)}</div>
@@ -67,8 +67,8 @@ const teamMembers = teamSections.flatMap((section) => section.members);
                 class="member-modal-avatar"
                 src={person.avatar}
                 alt={`${person.name} portrait`}
-                width="480"
-                height="480"
+                width="413"
+                height="579"
               />
               <div class="member-modal-detail">
                 <div class="meta">{person.role} · Joined {person.date.slice(0, 7)}</div>

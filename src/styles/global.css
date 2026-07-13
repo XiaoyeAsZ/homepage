@@ -511,15 +511,15 @@ p {
 
 .member-modal {
   max-height: min(86vh, 760px);
-  max-width: min(860px, 100%);
+  max-width: min(920px, 100%);
 }
 
 .member-modal-content {
-  --member-avatar-size: 176px;
+  --member-avatar-width: 413px;
   align-items: start;
   display: grid;
   gap: 24px;
-  grid-template-columns: var(--member-avatar-size) minmax(0, 1fr);
+  grid-template-columns: minmax(220px, var(--member-avatar-width)) minmax(0, 1fr);
   padding-right: 42px;
 }
 
@@ -534,11 +534,11 @@ p {
 }
 
 .member-modal-avatar {
-  aspect-ratio: 1;
+  aspect-ratio: 413 / 579;
   background: #f3e5d4;
   border-radius: 8px;
   object-fit: cover;
-  width: var(--member-avatar-size);
+  width: min(100%, var(--member-avatar-width));
 }
 
 .member-modal-body {
@@ -842,7 +842,7 @@ p {
 }
 
 .person {
-  --member-avatar-size: 176px;
+  --member-avatar-width: 413px;
   align-items: start;
   background: rgba(255, 255, 255, 0.9);
   border: 0;
@@ -908,12 +908,12 @@ p {
 }
 
 .person img {
-  aspect-ratio: 1;
+  aspect-ratio: 413 / 579;
   background: #f3e5d4;
   border-radius: 8px;
   justify-self: center;
   object-fit: cover;
-  width: var(--member-avatar-size);
+  width: min(100%, var(--member-avatar-width));
 }
 
 .person-bio p {
