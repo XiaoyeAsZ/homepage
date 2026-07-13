@@ -56,26 +56,28 @@ import { pathFor } from "@/utils/paths";
   </section>
 
   <section class="section alt">
-    <div class="section-heading">
-      <div>
-        <h2>Featured Publications</h2>
-        <p>A short list of recent papers. Add DOI, PDF, code, and project links as needed.</p>
+    <div class="section-panel">
+      <div class="section-heading">
+        <div>
+          <h2>Featured Publications</h2>
+          <p>A short list of recent papers. Add DOI, PDF, code, and project links as needed.</p>
+        </div>
+        <a class="link" href={pathFor("/publications/")}>All publications</a>
       </div>
-      <a class="link" href={pathFor("/publications/")}>All publications</a>
-    </div>
-    <div>
-      {
-        publications.slice(0, 2).map((paper) => (
-          <article class="publication">
-            <div class="meta">{paper.year}</div>
-            <div>
-              <h3>{paper.title}</h3>
-              <p>{paper.authors}</p>
-              <p>{paper.venue}</p>
-            </div>
-          </article>
-        ))
-      }
+      <div>
+        {
+          publications.slice(0, 2).map((paper) => (
+            <article class="publication">
+              <div class="meta">{paper.year}</div>
+              <div>
+                <h3>{paper.title}</h3>
+                <p>{paper.authors}</p>
+                <p>{paper.venue}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </section>
 
