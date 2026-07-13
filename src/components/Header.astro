@@ -9,7 +9,7 @@ const nav = [
   { href: "/awards/", label: "Awards" },
   { href: "/team/", label: "Team" },
   { href: "/course/", label: "Courses" },
-  { href: "/join/", label: "Join" },
+  { href: "/join/", label: "Join Us" },
 ];
 
 const path = Astro.url.pathname;
@@ -24,7 +24,8 @@ const path = Astro.url.pathname;
     {
       nav.map((item) => {
         const resolved = pathFor(item.href);
-        const active = item.href === "/" ? path === resolved : path.startsWith(resolved);
+        const active =
+          item.href === "/" ? path === resolved : path.startsWith(resolved);
         return (
           <a href={resolved} aria-current={active ? "page" : undefined}>
             {item.label}
