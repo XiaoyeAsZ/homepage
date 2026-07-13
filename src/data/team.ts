@@ -2,11 +2,17 @@ import { pathFor } from "@/utils/paths";
 
 type TeamType = "instructor" | "phd" | "master" | "undergraduate" | "graduated";
 
+type TeamLink = {
+  label: string;
+  href: string;
+};
+
 type TeamFrontmatter = {
   name: string;
   role: string;
   type: TeamType;
   date: string | Date;
+  links?: TeamLink[];
 };
 
 type TeamMarkdownModule = {
@@ -76,6 +82,7 @@ const members = Object.entries(memberModules)
       slug: slugFromPath(path),
       ...module.frontmatter,
       date: formatFullDate(module.frontmatter.date),
+      links: module.frontmatter.links ?? [],
       Content: module.Content,
       avatar: avatarEntry?.[1] ?? pathFor("/team-placeholder.svg"),
     };

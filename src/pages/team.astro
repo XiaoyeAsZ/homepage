@@ -73,6 +73,17 @@ const teamMembers = teamSections.flatMap((section) => section.members);
               <div class="member-modal-detail">
                 <div class="meta">{person.role} · Joined {person.date.slice(0, 7)}</div>
                 <h2 id={`member-modal-title-${person.slug}`}>{person.name}</h2>
+                {
+                  person.links.length > 0 && (
+                    <div class="member-links" aria-label={`${person.name} links`}>
+                      {person.links.map((link) => (
+                        <a href={link.href} target="_blank" rel="noreferrer">
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  )
+                }
                 <div class="entry-content member-modal-body">
                   <Content />
                 </div>
