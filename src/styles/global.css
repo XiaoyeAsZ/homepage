@@ -846,7 +846,7 @@ p {
 }
 
 .person {
-  --member-avatar-width: 180px;
+  --member-avatar-width: 150px;
   align-items: start;
   background: rgba(255, 255, 255, 0.9);
   border: 0;
@@ -854,10 +854,10 @@ p {
   box-shadow: 0 12px 30px rgba(88, 18, 18, 0.08);
   cursor: pointer;
   display: grid;
-  gap: 16px;
+  gap: 12px;
   justify-items: center;
   max-width: 260px;
-  padding: 20px;
+  padding: 16px;
   text-align: center;
   transition: box-shadow 160ms ease, transform 160ms ease;
   width: 100%;
