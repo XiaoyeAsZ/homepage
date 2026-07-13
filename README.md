@@ -48,4 +48,27 @@ Edit site content in `src/data/`:
 - `news.ts` for news items
 - `publications.ts` for papers
 - `awards.ts` for awards
-- `team.ts` for grouped team members
+- `src/content/team/<member-folder>/index.md` and `avatar.*` for team members
+
+Team member folders:
+
+```text
+src/content/team/jane-doe/
+  index.md
+  avatar.jpg
+```
+
+`index.md` frontmatter:
+
+```md
+---
+name: Jane Doe
+role: PhD Student
+type: phd
+order: 1
+---
+
+Short biography or research description.
+```
+
+Supported `type` values: `instructor`, `phd`, `master`, `undergraduate`, `graduated`.
