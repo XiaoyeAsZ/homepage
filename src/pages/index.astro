@@ -128,17 +128,6 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
               <h3>{paper.title}</h3>
               <p>{paper.authors}</p>
               <p>{paper.venue}</p>
-              {
-                paper.topics.length > 0 && (
-                  <div class="topic-list compact-topic-list" aria-label="Publication topics">
-                    {paper.topics.slice(0, 4).map((topic) => (
-                      <span class:list={["topic-pill", `topic-pill-${topic.type}`]}>
-                        {topic.name}
-                      </span>
-                    ))}
-                  </div>
-                )
-              }
             </article>
           ))
         }
@@ -299,7 +288,7 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
   const publicationModals = document.querySelectorAll<HTMLElement>("[data-pub-modal]");
   const visibleTopicLimit = 12;
   const visiblePublicationLimit = 4;
-  let selectedPublicationTopic = "all";
+  const selectedPublicationTopics = new Set<string>();
   let topicsExpanded = false;
   let publicationsExpanded = false;
   let activePublicationOpener: HTMLElement | null = null;
@@ -316,9 +305,13 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
     }
   }
 
-  function setActivePublicationFilter(activeFilter: HTMLButtonElement) {
+  function updateActivePublicationFilters() {
     publicationFilters.forEach((item) => {
-      const isActive = item === activeFilter;
+      const topic = item.dataset.publicationFilter ?? "all";
+      const isActive =
+        topic === "all"
+          ? selectedPublicationTopics.size === 0
+          : selectedPublicationTopics.has(topic);
       item.classList.toggle("is-active", isActive);
       item.setAttribute("aria-pressed", String(isActive));
     });
@@ -330,7 +323,8 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
     publicationCards.forEach((card) => {
       const topics = card.dataset.topicIds?.split(" ") ?? [];
       const matchesTopic =
-        selectedPublicationTopic === "all" || topics.includes(selectedPublicationTopic);
+        selectedPublicationTopics.size === 0 ||
+        topics.some((topic) => selectedPublicationTopics.has(topic));
       const withinLimit = publicationsExpanded || renderedCount < visiblePublicationLimit;
       const isVisible = matchesTopic && withinLimit;
 
@@ -356,9 +350,18 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
 
   publicationFilters.forEach((filter) => {
     filter.addEventListener("click", () => {
-      selectedPublicationTopic = filter.dataset.publicationFilter ?? "all";
+      const topic = filter.dataset.publicationFilter ?? "all";
+
+      if (topic === "all") {
+        selectedPublicationTopics.clear();
+      } else if (selectedPublicationTopics.has(topic)) {
+        selectedPublicationTopics.delete(topic);
+      } else {
+        selectedPublicationTopics.add(topic);
+      }
+
       publicationsExpanded = false;
-      setActivePublicationFilter(filter);
+      updateActivePublicationFilters();
       updatePublicationVisibility();
     });
   });
@@ -369,19 +372,14 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
     if (!topicsExpanded) {
       const activeHiddenFilter = Array.from(topicFilters).find(
         (filter) =>
-          filter.classList.contains("is-active") &&
+          selectedPublicationTopics.has(filter.dataset.publicationFilter ?? "") &&
           Number(filter.dataset.topicIndex ?? "0") >= visibleTopicLimit,
       );
 
       if (activeHiddenFilter) {
-        const allFilter = document.querySelector<HTMLButtonElement>(
-          '[data-publication-filter="all"]',
-        );
-        selectedPublicationTopic = "all";
+        selectedPublicationTopics.clear();
         publicationsExpanded = false;
-        if (allFilter) {
-          setActivePublicationFilter(allFilter);
-        }
+        updateActivePublicationFilters();
         updatePublicationVisibility();
       }
     }
@@ -395,6 +393,7 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
   });
 
   updateTopicVisibility();
+  updateActivePublicationFilters();
   updatePublicationVisibility();
 
   function getPublicationModal(slug: string) {
