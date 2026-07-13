@@ -3,6 +3,15 @@ date: 2024-11-18
 title: "AutoVCoder: A Systematic Framework for Automated Verilog Code Generation using LLMs"
 authors: "Mingzhe Gao, Jieru Zhao*, Zhe Lin, Wenchao Ding, Xiaofeng Hou, Yu Feng, Chao Li, Minyi Guo"
 venue: "ICCD 2024, the 42nd IEEE International Conference on Computer Design"
+topics:
+  - level: "algorithm"
+    name: "LLM"
+  - level: "compiler"
+    name: "Code Generation"
+  - level: "compiler"
+    name: "Verilog Generation"
+  - level: "arch"
+    name: "Hardware Design"
 links:
   - label: "Paper"
     href: "https://www.computer.org/csdl/proceedings-article/iccd/2024/804000a162/23b5ttsuTC0"
@@ -10,5 +19,10 @@ links:
     href: "https://github.com/sjtu-zhao-lab/AutoVCoder"
 ---
 
-Best Paper Nomination
+## Abstract
 
+AutoVCoder is a framework for improving LLM-based Verilog generation. It combines curated hardware-code data, LLM fine-tuning, and domain-specific retrieval-augmented generation to improve both syntactic validity and functional correctness for RTL code generation.
+
+## Notes
+
+Best Paper Nomination

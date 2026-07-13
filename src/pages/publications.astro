@@ -2,6 +2,7 @@
 import PageHeader from "@/components/PageHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { publications } from "@/data/publications";
+import { pathFor } from "@/utils/paths";
 ---
 
 <BaseLayout title="Publications" description="Lab publications">
@@ -11,17 +12,17 @@ import { publications } from "@/data/publications";
   <section class="section">
     {
       publications.map((paper) => {
-        const Content = paper.Content;
         return (
           <article class="publication">
             <div class="meta">{paper.date}</div>
             <div>
-              <h2>{paper.title}</h2>
+              <h2>
+                <a href={pathFor(`/publications/${paper.slug}/`)}>
+                  {paper.title}
+                </a>
+              </h2>
               <p>{paper.authors}</p>
               <p>{paper.venue}</p>
-              <div class="entry-content">
-                <Content />
-              </div>
               {
                 paper.links.length > 0 && (
                   <div class="pub-links">

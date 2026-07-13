@@ -1,0 +1,57 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { publications } from "@/data/publications";
+import { pathFor } from "@/utils/paths";
+
+export function getStaticPaths() {
+  return publications.map((paper) => ({
+    params: { slug: paper.slug },
+    props: { paper },
+  }));
+}
+
+const { paper } = Astro.props;
+const Content = paper.Content;
+---
+
+<BaseLayout title={paper.title} description={paper.venue}>
+  <section class="page-header publication-detail-header">
+    <a class="back-link" href={pathFor("/publications/")}>Back to Publications</a>
+    <h1>{paper.title}</h1>
+    <p>{paper.authors}</p>
+    <p>{paper.venue}</p>
+  </section>
+
+  <section class="section">
+    <article class="publication-detail">
+      <div class="publication-detail-meta">
+        <span class="meta">{paper.date}</span>
+        {
+          paper.topics.length > 0 && (
+            <div class="topic-list" aria-label="Publication topics">
+              {paper.topics.map((topic) => (
+                <span class:list={["topic-pill", `topic-pill-${topic.level}`]}>
+                  {topic.name}
+                </span>
+              ))}
+            </div>
+          )
+        }
+      </div>
+
+      {
+        paper.links.length > 0 && (
+          <div class="pub-links">
+            {paper.links.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))}
+          </div>
+        )
+      }
+
+      <div class="entry-content publication-body">
+        <Content />
+      </div>
+    </article>
+  </section>
+</BaseLayout>

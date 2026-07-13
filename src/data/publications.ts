@@ -3,12 +3,20 @@ type PublicationLink = {
   href: string;
 };
 
+type PublicationTopicLevel = "algorithm" | "system" | "compiler" | "arch";
+
+type PublicationTopic = {
+  level: PublicationTopicLevel;
+  name: string;
+};
+
 type PublicationFrontmatter = {
   date: string | Date;
   title: string;
   authors: string;
   venue: string;
   links?: PublicationLink[];
+  topics?: PublicationTopic[];
 };
 
 type PublicationMarkdownModule = {
@@ -28,15 +36,22 @@ const formatFullDate = (value: string | Date) => {
   return String(value).slice(0, 10);
 };
 
-export const publications = Object.values(modules)
-  .map((module) => {
+const slugFromPath = (path: string) => {
+  const parts = path.split("/");
+  return parts[parts.length - 2] ?? "";
+};
+
+export const publications = Object.entries(modules)
+  .map(([path, module]) => {
     const fullDate = formatFullDate(module.frontmatter.date);
 
     return {
+      slug: slugFromPath(path),
       ...module.frontmatter,
       date: fullDate.slice(0, 7),
       fullDate,
       links: module.frontmatter.links ?? [],
+      topics: module.frontmatter.topics ?? [],
       Content: module.Content,
     };
   })

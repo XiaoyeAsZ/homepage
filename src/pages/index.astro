@@ -100,7 +100,11 @@ const hasHiddenResearchAreas = lab.researchAreas.length > visibleResearchCount;
             <article class="publication">
               <div class="meta">{paper.date}</div>
               <div>
-                <h3>{paper.title}</h3>
+                <h3>
+                  <a href={pathFor(`/publications/${paper.slug}/`)}>
+                    {paper.title}
+                  </a>
+                </h3>
                 <p>{paper.authors}</p>
                 <p>{paper.venue}</p>
               </div>
