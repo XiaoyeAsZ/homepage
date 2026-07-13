@@ -3,6 +3,8 @@ name: Chi Zhang
 role: PhD Student
 type: phd
 date: 2026-07-01
+email: czhang@example.edu
+phone: "+86 21 0000 0000"
 links:
   - label: GitHub
     href: https://github.com/username

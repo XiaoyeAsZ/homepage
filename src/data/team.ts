@@ -12,6 +12,8 @@ type TeamFrontmatter = {
   role: string;
   type: TeamType;
   date: string | Date;
+  email?: string;
+  phone?: string;
   links?: TeamLink[];
 };
 
@@ -82,6 +84,8 @@ const members = Object.entries(memberModules)
       slug: slugFromPath(path),
       ...module.frontmatter,
       date: formatFullDate(module.frontmatter.date),
+      email: module.frontmatter.email ?? "",
+      phone: module.frontmatter.phone ?? "",
       links: module.frontmatter.links ?? [],
       Content: module.Content,
       avatar: avatarEntry?.[1] ?? pathFor("/team-placeholder.svg"),

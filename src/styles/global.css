@@ -548,6 +548,34 @@ p {
   max-width: 100%;
 }
 
+.member-contact-list {
+  display: grid;
+  gap: 8px;
+}
+
+.member-contact-list a {
+  align-items: center;
+  color: var(--muted);
+  display: inline-flex;
+  gap: 8px;
+  width: fit-content;
+}
+
+.member-contact-list a:hover {
+  color: var(--brand-strong);
+}
+
+.member-contact-list svg {
+  fill: none;
+  flex: 0 0 auto;
+  height: 17px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.9;
+  width: 17px;
+}
+
 .member-links {
   display: flex;
   flex-wrap: wrap;
