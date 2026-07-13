@@ -515,11 +515,11 @@ p {
 }
 
 .member-modal-content {
-  --member-avatar-width: 413px;
+  --member-avatar-width: 240px;
   align-items: start;
   display: grid;
   gap: 24px;
-  grid-template-columns: minmax(220px, var(--member-avatar-width)) minmax(0, 1fr);
+  grid-template-columns: var(--member-avatar-width) minmax(0, 1fr);
   padding-right: 42px;
 }
 
@@ -842,7 +842,7 @@ p {
 }
 
 .person {
-  --member-avatar-width: 413px;
+  --member-avatar-width: 180px;
   align-items: start;
   background: rgba(255, 255, 255, 0.9);
   border: 0;
