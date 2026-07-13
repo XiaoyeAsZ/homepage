@@ -49,23 +49,13 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
     <div class="grid three">
       {
         news.slice(0, 3).map((item) => (
-          <article class:list={["card", "home-card", item.image && "has-media"]}>
+          <article class="card home-card">
             <div class="home-card-main">
               <div>
                 <div class="meta">{item.date}</div>
                 <h3>{item.title}</h3>
                 <p>{item.body}</p>
               </div>
-              {
-                item.image && (
-                  <img
-                    class="entry-card-image home-card-image"
-                    src={item.image}
-                    alt={item.imageAlt}
-                    loading="lazy"
-                  />
-                )
-              }
             </div>
           </article>
         ))
@@ -117,7 +107,7 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
         {
           publications.map((paper, index) => (
             <article
-              class:list={["home-publication-card", paper.image && "has-media"]}
+              class="home-publication-card"
               role="button"
               tabindex="0"
               data-pub-open={paper.slug}
@@ -134,16 +124,6 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
                   <p>{paper.authors}</p>
                   <p>{paper.venue}</p>
                 </div>
-                {
-                  paper.image && (
-                    <img
-                      class="entry-card-image home-card-image"
-                      src={paper.image}
-                      alt={paper.imageAlt}
-                      loading="lazy"
-                    />
-                  )
-                }
               </div>
             </article>
           ))
@@ -177,23 +157,13 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
     <div class="grid two">
       {
         awards.slice(0, 3).map((award) => (
-          <article class:list={["card", "home-card", award.image && "has-media"]}>
+          <article class="card home-card">
             <div class="home-card-main">
               <div>
                 <div class="meta">{award.date}</div>
                 <h3>{award.title}</h3>
                 <p>{award.description}</p>
               </div>
-              {
-                award.image && (
-                  <img
-                    class="entry-card-image home-card-image"
-                    src={award.image}
-                    alt={award.imageAlt}
-                    loading="lazy"
-                  />
-                )
-              }
             </div>
           </article>
         ))
