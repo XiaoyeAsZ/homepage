@@ -324,7 +324,7 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
       const topics = card.dataset.topicIds?.split(" ") ?? [];
       const matchesTopic =
         selectedPublicationTopics.size === 0 ||
-        topics.some((topic) => selectedPublicationTopics.has(topic));
+        Array.from(selectedPublicationTopics).every((topic) => topics.includes(topic));
       const withinLimit = publicationsExpanded || renderedCount < visiblePublicationLimit;
       const isVisible = matchesTopic && withinLimit;
 
