@@ -876,7 +876,7 @@ p {
 }
 
 .entry-card-main {
-  align-items: start;
+  align-items: center;
   display: grid;
   gap: 20px;
   grid-template-columns: minmax(0, 1fr);
