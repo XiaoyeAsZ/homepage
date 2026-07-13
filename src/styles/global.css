@@ -434,7 +434,7 @@ p {
 
 .month-heading {
   align-items: center;
-  color: var(--entry-accent, var(--brand-strong));
+  color: var(--ink);
   display: flex;
   font-size: clamp(1.45rem, 2vw, 1.9rem);
   gap: 16px;
@@ -442,11 +442,10 @@ p {
 }
 
 .month-heading::after {
-  background: linear-gradient(90deg, var(--entry-accent, var(--brand)), transparent);
+  background: linear-gradient(90deg, var(--line), transparent);
   content: "";
   flex: 1;
   height: 2px;
-  opacity: 0.38;
 }
 
 .entry-card-list {
