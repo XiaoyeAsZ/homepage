@@ -4,15 +4,37 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { publications } from "@/data/publications";
 import { pathFor } from "@/utils/paths";
 
-const publicationsByYear = publications.reduce<Record<string, typeof publications>>(
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const publicationsByMonth = publications.reduce<Record<string, typeof publications>>(
   (groups, paper) => {
-    const year = paper.fullDate.slice(0, 4);
-    groups[year] = groups[year] ?? [];
-    groups[year].push(paper);
+    const month = paper.fullDate.slice(0, 7);
+    groups[month] = groups[month] ?? [];
+    groups[month].push(paper);
     return groups;
   },
   {},
 );
+
+const publicationMonths = Object.entries(publicationsByMonth).sort(([a], [b]) => b.localeCompare(a));
+
+const formatMonth = (month: string) => {
+  const [year, monthNumber] = month.split("-");
+  return `${monthNames[Number(monthNumber) - 1]} ${year}`;
+};
 ---
 
 <BaseLayout title="Publications" description="Lab publications">
@@ -20,11 +42,11 @@ const publicationsByYear = publications.reduce<Record<string, typeof publication
     title="Publications"
   />
   <section class="section">
-    <div class="year-list">
+    <div class="month-list">
       {
-        Object.entries(publicationsByYear).map(([year, papers]) => (
-          <section class="year-group" aria-labelledby={`publications-${year}`}>
-            <h2 class="year-heading" id={`publications-${year}`}>{year}</h2>
+        publicationMonths.map(([month, papers]) => (
+          <section class={`month-group month-accent-${month.slice(5, 7)}`} aria-labelledby={`publications-${month}`}>
+            <h2 class="month-heading" id={`publications-${month}`}>{formatMonth(month)}</h2>
             <div class="entry-card-list">
               {papers.map((paper) => (
                 <article class="publication entry-card publication-card">

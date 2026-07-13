@@ -422,35 +422,84 @@ p {
   gap: 16px;
 }
 
-.year-list {
+.month-list {
   display: grid;
   gap: 44px;
 }
 
-.year-group {
+.month-group {
   display: grid;
   gap: 16px;
 }
 
-.year-heading {
+.month-heading {
   align-items: center;
-  color: var(--brand-strong);
+  color: var(--entry-accent, var(--brand-strong));
   display: flex;
   font-size: clamp(1.45rem, 2vw, 1.9rem);
   gap: 16px;
   margin: 0;
 }
 
-.year-heading::after {
-  background: linear-gradient(90deg, rgba(200, 22, 30, 0.36), rgba(200, 164, 93, 0.16), transparent);
+.month-heading::after {
+  background: linear-gradient(90deg, var(--entry-accent, var(--brand)), transparent);
   content: "";
   flex: 1;
   height: 2px;
+  opacity: 0.38;
 }
 
 .entry-card-list {
   display: grid;
   gap: 14px;
+}
+
+.month-accent-01 {
+  --entry-accent: #c8161e;
+}
+
+.month-accent-02 {
+  --entry-accent: #b45f06;
+}
+
+.month-accent-03 {
+  --entry-accent: #2f7d32;
+}
+
+.month-accent-04 {
+  --entry-accent: #00796b;
+}
+
+.month-accent-05 {
+  --entry-accent: #1565c0;
+}
+
+.month-accent-06 {
+  --entry-accent: #5e35b1;
+}
+
+.month-accent-07 {
+  --entry-accent: #ad1457;
+}
+
+.month-accent-08 {
+  --entry-accent: #8d6e63;
+}
+
+.month-accent-09 {
+  --entry-accent: #00838f;
+}
+
+.month-accent-10 {
+  --entry-accent: #6a1b9a;
+}
+
+.month-accent-11 {
+  --entry-accent: #558b2f;
+}
+
+.month-accent-12 {
+  --entry-accent: #c8a45d;
 }
 
 .publication,
@@ -479,6 +528,7 @@ p {
 .entry-card.award {
   background: rgba(255, 255, 255, 0.9);
   border: 0;
+  border-left: 5px solid var(--entry-accent, var(--brand));
   border-radius: 8px;
   box-shadow: 0 12px 30px rgba(88, 18, 18, 0.08);
   padding: 18px 20px;

@@ -3,15 +3,37 @@ import PageHeader from "@/components/PageHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { awards } from "@/data/awards";
 
-const awardsByYear = awards.reduce<Record<string, typeof awards>>(
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const awardsByMonth = awards.reduce<Record<string, typeof awards>>(
   (groups, award) => {
-    const year = award.fullDate.slice(0, 4);
-    groups[year] = groups[year] ?? [];
-    groups[year].push(award);
+    const month = award.fullDate.slice(0, 7);
+    groups[month] = groups[month] ?? [];
+    groups[month].push(award);
     return groups;
   },
   {},
 );
+
+const awardMonths = Object.entries(awardsByMonth).sort(([a], [b]) => b.localeCompare(a));
+
+const formatMonth = (month: string) => {
+  const [year, monthNumber] = month.split("-");
+  return `${monthNames[Number(monthNumber) - 1]} ${year}`;
+};
 ---
 
 <BaseLayout title="Awards" description="Lab awards and recognition">
@@ -19,13 +41,13 @@ const awardsByYear = awards.reduce<Record<string, typeof awards>>(
     title="Awards"
   />
   <section class="section">
-    <div class="year-list">
+    <div class="month-list">
       {
-        Object.entries(awardsByYear).map(([year, awardsInYear]) => (
-          <section class="year-group" aria-labelledby={`awards-${year}`}>
-            <h2 class="year-heading" id={`awards-${year}`}>{year}</h2>
+        awardMonths.map(([month, awardsInMonth]) => (
+          <section class={`month-group month-accent-${month.slice(5, 7)}`} aria-labelledby={`awards-${month}`}>
+            <h2 class="month-heading" id={`awards-${month}`}>{formatMonth(month)}</h2>
             <div class="entry-card-list">
-              {awardsInYear.map((award) => {
+              {awardsInMonth.map((award) => {
                 const Content = award.Content;
                 return (
                   <article class="award entry-card award-card">
