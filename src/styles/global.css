@@ -28,6 +28,8 @@ html {
 }
 
 body {
+  font-size: 16.5px;
+  line-height: 1.65;
   margin: 0;
   min-width: 320px;
 }
@@ -173,16 +175,16 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.1rem, 4vw, 3.6rem);
+  font-size: clamp(2rem, 3.2vw, 3.1rem);
   max-width: 920px;
 }
 
 h2 {
-  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
 }
 
 h3 {
-  font-size: 1.16rem;
+  font-size: 1.08rem;
 }
 
 p {
@@ -191,7 +193,7 @@ p {
 
 .lead {
   color: #5e4a45;
-  font-size: clamp(1.04rem, 2vw, 1.28rem);
+  font-size: clamp(1.02rem, 1.4vw, 1.18rem);
   max-width: 760px;
 }
 
@@ -239,6 +241,7 @@ p {
 .research-chip {
   border: 1px solid transparent;
   border-radius: 8px;
+  font-size: 0.95rem;
   font-weight: 760;
   padding: 8px 12px;
 }
@@ -381,7 +384,7 @@ p {
 
 .meta {
   color: var(--accent);
-  font-size: 0.86rem;
+  font-size: 0.92rem;
   font-weight: 800;
   margin-bottom: 8px;
 }
@@ -394,7 +397,7 @@ p {
 }
 
 .page-header h1 {
-  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
 }
 
 .page-header::after {
@@ -410,7 +413,7 @@ p {
 
 .page-header p:last-child {
   color: var(--muted);
-  font-size: 1.1rem;
+  font-size: 1rem;
   max-width: min(780px, var(--content-width));
 }
 
@@ -462,7 +465,7 @@ p {
   border: 1px solid var(--line);
   border-radius: 6px;
   color: var(--brand-strong);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 760;
   padding: 6px 10px;
 }
@@ -530,13 +533,13 @@ p {
 .back-link {
   color: var(--brand-strong);
   display: inline-block;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 780;
   margin-bottom: 18px;
 }
 
 .publication-detail-header h1 {
-  font-size: clamp(1.9rem, 3.4vw, 3rem);
+  font-size: clamp(1.8rem, 2.8vw, 2.65rem);
   line-height: 1.15;
   margin-left: auto;
   margin-right: auto;
@@ -586,7 +589,7 @@ p {
 
 .topic-pill {
   border-radius: 999px;
-  font-size: 0.84rem;
+  font-size: 0.9rem;
   font-weight: 760;
   padding: 6px 10px;
 }
