@@ -36,7 +36,7 @@ const Content = paper.Content;
           paper.topics.length > 0 && (
             <div class="topic-list" aria-label="Publication topics">
               {paper.topics.map((topic) => (
-                <span class:list={["topic-pill", `topic-pill-${topic.level}`]}>
+                <span class:list={["topic-pill", `topic-pill-${topic.type}`]}>
                   {topic.name}
                 </span>
               ))}
