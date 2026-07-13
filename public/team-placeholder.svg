@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480" role="img" aria-labelledby="title desc">
   <title id="title">Portrait placeholder</title>
   <desc id="desc">Abstract placeholder image for a lab team member.</desc>
-  <rect width="480" height="480" fill="#e8efeb" />
-  <circle cx="240" cy="172" r="78" fill="#7aa59e" />
-  <path d="M108 414c20-88 79-134 132-134s112 46 132 134" fill="#0f6b5f" />
-  <path d="M84 86h312" stroke="#c54e2e" stroke-width="16" stroke-linecap="round" />
+  <rect width="480" height="480" fill="#f3e5d4" />
+  <circle cx="240" cy="172" r="78" fill="#d4b16a" />
+  <path d="M108 414c20-88 79-134 132-134s112 46 132 134" fill="#c8161e" />
+  <path d="M84 86h312" stroke="#002b60" stroke-width="16" stroke-linecap="round" />
 </svg>
