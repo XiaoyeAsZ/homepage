@@ -2,6 +2,38 @@
 import PageHeader from "@/components/PageHeader.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { news } from "@/data/news";
+
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const newsByMonth = news.reduce<Record<string, typeof news>>(
+  (groups, item) => {
+    const month = item.date.slice(0, 7);
+    groups[month] = groups[month] ?? [];
+    groups[month].push(item);
+    return groups;
+  },
+  {},
+);
+
+const newsMonths = Object.entries(newsByMonth).sort(([a], [b]) => b.localeCompare(a));
+
+const formatMonth = (month: string) => {
+  const [year, monthNumber] = month.split("-");
+  return `${monthNames[Number(monthNumber) - 1]} ${year}`;
+};
 ---
 
 <BaseLayout title="News" description="Lab news and announcements">
@@ -9,20 +41,27 @@ import { news } from "@/data/news";
     title="News"
   />
   <section class="section">
-    <div class="timeline">
+    <div class="month-list">
       {
-        news.map((item) => {
-          const Content = item.Content;
-          return (
-            <article class="card">
-              <div class="meta">{item.date}</div>
-              <h2>{item.title}</h2>
-              <div class="entry-content">
-                <Content />
-              </div>
-            </article>
-          );
-        })
+        newsMonths.map(([month, items]) => (
+          <section class={`month-group month-accent-${month.slice(5, 7)}`} aria-labelledby={`news-${month}`}>
+            <h2 class="month-heading" id={`news-${month}`}>{formatMonth(month)}</h2>
+            <div class="entry-card-list">
+              {items.map((item) => {
+                const Content = item.Content;
+                return (
+                  <article class="entry-card news-card">
+                    <div class="meta">{item.date}</div>
+                    <h3>{item.title}</h3>
+                    <div class="entry-content">
+                      <Content />
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        ))
       }
     </div>
   </section>

@@ -76,7 +76,7 @@ const hasHiddenResearchAreas = lab.researchAreas.length > visibleResearchCount;
     <div class="grid three">
       {
         news.slice(0, 3).map((item) => (
-          <article class="card">
+          <article class="card home-card">
             <div class="meta">{item.date}</div>
             <h3>{item.title}</h3>
             <p>{item.body}</p>
@@ -97,7 +97,7 @@ const hasHiddenResearchAreas = lab.researchAreas.length > visibleResearchCount;
       <div>
         {
           publications.slice(0, 4).map((paper) => (
-            <article class="publication">
+            <article class="publication home-card">
               <div class="meta">{paper.date}</div>
               <div>
                 <h3>
@@ -125,7 +125,7 @@ const hasHiddenResearchAreas = lab.researchAreas.length > visibleResearchCount;
     <div class="grid two">
       {
         awards.slice(0, 3).map((award) => (
-          <article class="card">
+          <article class="card home-card">
             <div class="meta">{award.date}</div>
             <h3>{award.title}</h3>
             <p>{award.description}</p>

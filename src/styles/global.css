@@ -374,6 +374,25 @@ p {
   padding: 22px;
 }
 
+.home-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(88, 18, 18, 0.08);
+  padding: 20px 22px;
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+.home-card.publication {
+  border-bottom: 0;
+  margin-bottom: 14px;
+}
+
+.home-card:hover {
+  box-shadow: 0 18px 38px rgba(88, 18, 18, 0.12);
+  transform: translateY(-1px);
+}
+
 .card p,
 .timeline p,
 .publication p,
@@ -524,7 +543,8 @@ p {
 }
 
 .entry-card.publication,
-.entry-card.award {
+.entry-card.award,
+.entry-card.news-card {
   background: rgba(255, 255, 255, 0.9);
   border: 0;
   border-left: 5px solid var(--entry-accent, var(--brand));
@@ -536,6 +556,10 @@ p {
 
 .entry-card.award {
   background: rgba(255, 255, 255, 0.9);
+}
+
+.entry-card.news-card {
+  display: block;
 }
 
 .entry-card:hover {
