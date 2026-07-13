@@ -1,5 +1,5 @@
 ---
-year: 2026
+date: 2026-07
 title: A Placeholder Paper Title for Your Lab
 authors: First Author, Second Author, and Principal Investigator
 venue: Conference or Journal Name

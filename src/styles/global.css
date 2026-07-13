@@ -378,11 +378,19 @@ p {
 
 .publication,
 .award {
+  align-items: start;
   border-bottom: 1px solid var(--line);
   display: grid;
-  gap: 16px;
-  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 20px;
+  grid-template-columns: 116px minmax(0, 1fr);
   padding: 22px 0;
+}
+
+.publication > .meta,
+.award > .meta {
+  line-height: 1.08;
+  margin-bottom: 0;
+  padding-top: 0.16em;
 }
 
 .publication:first-child,

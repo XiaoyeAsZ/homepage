@@ -50,6 +50,8 @@ Edit site content in `src/data/`:
 - `src/content/awards/<award-folder>/index.md` for awards
 - `src/content/team/<member-folder>/index.md` and `avatar.*` for team members
 
+The matching `src/data/*.ts` files are loaders that scan these folders and sort entries for the pages.
+
 News folders:
 
 ```text
@@ -77,7 +79,7 @@ src/content/publications/paper-slug/
 
 ```md
 ---
-year: 2026
+date: 2026-07
 title: Paper Title
 authors: First Author and Second Author
 venue: Conference Name
@@ -99,7 +101,7 @@ src/content/awards/award-slug/
 
 ```md
 ---
-year: 2026
+date: 2026-07
 title: Best Paper Award
 summary: Short text shown on the homepage.
 order: 1

@@ -1,5 +1,5 @@
 ---
-year: 2025
+date: 2025-11
 title: Another Representative Publication Entry
 authors: Student Name and Collaborator Name
 venue: Workshop or Symposium Name

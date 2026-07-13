@@ -68,7 +68,7 @@ import { pathFor } from "@/utils/paths";
         {
           publications.slice(0, 2).map((paper) => (
             <article class="publication">
-              <div class="meta">{paper.year}</div>
+              <div class="meta">{paper.date}</div>
               <div>
                 <h3>{paper.title}</h3>
                 <p>{paper.authors}</p>
@@ -93,7 +93,7 @@ import { pathFor } from "@/utils/paths";
       {
         awards.slice(0, 2).map((award) => (
           <article class="card">
-            <div class="meta">{award.year}</div>
+            <div class="meta">{award.date}</div>
             <h3>{award.title}</h3>
             <p>{award.description}</p>
           </article>
