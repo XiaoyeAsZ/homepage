@@ -115,6 +115,10 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
           publications.map((paper, index) => (
             <article
               class="home-publication-card"
+              role="button"
+              tabindex="0"
+              data-pub-open={paper.slug}
+              aria-controls={`home-publication-modal-${paper.slug}`}
               data-publication-card
               data-publication-index={index}
               data-topic-ids={paper.topics.map((topic) => topic.id).join(" ")}
@@ -224,6 +228,58 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
       </div>
     </section>
   </div>
+
+  {
+    publications.map((paper) => {
+      const Content = paper.Content;
+      return (
+        <div
+          class="modal-backdrop"
+          id={`home-publication-modal-${paper.slug}`}
+          data-pub-modal={paper.slug}
+          aria-hidden="true"
+        >
+          <article
+            class="publication-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`home-publication-modal-title-${paper.slug}`}
+          >
+            <button class="modal-close" type="button" aria-label="Close" data-pub-close>
+              &times;
+            </button>
+            <div class="publication-modal-header">
+              <span class="meta">{paper.date}</span>
+              <h2 id={`home-publication-modal-title-${paper.slug}`}>{paper.title}</h2>
+              <p>{paper.authors}</p>
+              <p>{paper.venue}</p>
+            </div>
+            {
+              paper.topics.length > 0 && (
+                <div class="topic-list" aria-label="Publication topics">
+                  {paper.topics.map((topic) => (
+                    <span class:list={["topic-pill", `topic-pill-${topic.type}`]}>
+                      {topic.name}
+                    </span>
+                  ))}
+                </div>
+              )
+            }
+            {
+              paper.links.length > 0 && (
+                <div class="pub-links">
+                  {paper.links.map((link) => <a href={link.href}>{link.label}</a>)}
+                </div>
+              )
+            }
+            <div class="entry-content publication-body publication-modal-body">
+              <Content />
+            </div>
+          </article>
+        </div>
+      );
+    })
+  }
 </BaseLayout>
 
 <script>
@@ -239,11 +295,14 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
     document.querySelector<HTMLButtonElement>("[data-topic-toggle]");
   const publicationToggle =
     document.querySelector<HTMLButtonElement>("[data-publication-toggle]");
+  const publicationOpeners = document.querySelectorAll<HTMLElement>("[data-pub-open]");
+  const publicationModals = document.querySelectorAll<HTMLElement>("[data-pub-modal]");
   const visibleTopicLimit = 12;
   const visiblePublicationLimit = 4;
   let selectedPublicationTopic = "all";
   let topicsExpanded = false;
   let publicationsExpanded = false;
+  let activePublicationOpener: HTMLElement | null = null;
 
   function updateTopicVisibility() {
     topicFilters.forEach((filter) => {
@@ -338,6 +397,67 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
   updateTopicVisibility();
   updatePublicationVisibility();
 
+  function getPublicationModal(slug: string) {
+    return Array.from(publicationModals).find(
+      (modal) => modal.dataset.pubModal === slug,
+    );
+  }
+
+  function openPublicationModal(slug: string, opener: HTMLElement) {
+    const modal = getPublicationModal(slug);
+
+    if (!modal) {
+      return;
+    }
+
+    activePublicationOpener = opener;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+    modal.querySelector<HTMLButtonElement>("[data-pub-close]")?.focus();
+  }
+
+  function closePublicationModal(modal: HTMLElement) {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    activePublicationOpener?.focus();
+    activePublicationOpener = null;
+  }
+
+  publicationOpeners.forEach((opener) => {
+    opener.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement;
+
+      if (target.closest("a")) {
+        return;
+      }
+
+      openPublicationModal(opener.dataset.pubOpen ?? "", opener);
+    });
+
+    opener.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") {
+        return;
+      }
+
+      event.preventDefault();
+      openPublicationModal(opener.dataset.pubOpen ?? "", opener);
+    });
+  });
+
+  publicationModals.forEach((modal) => {
+    modal.querySelector("[data-pub-close]")?.addEventListener("click", () => {
+      closePublicationModal(modal);
+    });
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closePublicationModal(modal);
+      }
+    });
+  });
+
   const joinModal =
     document.querySelector<HTMLElement>("[data-join-modal]");
   const joinOpen =
@@ -368,7 +488,20 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
   });
 
   window.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && joinModal?.classList.contains("is-open")) {
+    if (event.key !== "Escape") {
+      return;
+    }
+
+    const openPublicationModal = Array.from(publicationModals).find((modal) =>
+      modal.classList.contains("is-open"),
+    );
+
+    if (openPublicationModal) {
+      closePublicationModal(openPublicationModal);
+      return;
+    }
+
+    if (joinModal?.classList.contains("is-open")) {
       closeJoinModal();
     }
   });
