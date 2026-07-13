@@ -268,10 +268,12 @@ p {
 }
 
 .section-panel {
+  --panel-padding: clamp(22px, 3vw, 36px);
   background: var(--tint);
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: clamp(22px, 3vw, 36px);
+  max-width: min(100%, calc(var(--content-width) + var(--panel-padding) + var(--panel-padding)));
+  padding: var(--panel-padding);
 }
 
 .section-panel > :last-child {
