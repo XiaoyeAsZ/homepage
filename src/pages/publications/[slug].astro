@@ -16,7 +16,13 @@ const Content = paper.Content;
 
 <BaseLayout title={paper.title} description={paper.venue}>
   <section class="page-header publication-detail-header">
-    <a class="back-link" href={pathFor("/publications/")}>Back to Publications</a>
+    <a
+      class="back-link"
+      data-back-link
+      href={pathFor("/publications/")}
+    >
+      Back
+    </a>
     <h1>{paper.title}</h1>
     <p>{paper.authors}</p>
     <p>{paper.venue}</p>
@@ -55,3 +61,22 @@ const Content = paper.Content;
     </article>
   </section>
 </BaseLayout>
+
+<script>
+  const backLink = document.querySelector<HTMLAnchorElement>("[data-back-link]");
+
+  backLink?.addEventListener("click", (event) => {
+    if (!document.referrer) {
+      return;
+    }
+
+    const referrer = new URL(document.referrer);
+
+    if (referrer.origin !== window.location.origin) {
+      return;
+    }
+
+    event.preventDefault();
+    window.history.back();
+  });
+</script>
