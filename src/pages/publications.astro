@@ -63,6 +63,17 @@ const formatMonth = (month: string) => {
                     <p>{paper.authors}</p>
                     <p>{paper.venue}</p>
                     {
+                      paper.topics.length > 0 && (
+                        <div class="topic-list compact-topic-list" aria-label="Publication topics">
+                          {paper.topics.map((topic) => (
+                            <span class:list={["topic-pill", `topic-pill-${topic.type}`]}>
+                              {topic.name}
+                            </span>
+                          ))}
+                        </div>
+                      )
+                    }
+                    {
                       paper.links.length > 0 && (
                         <div class="pub-links">
                           {paper.links.map((link) => <a href={link.href}>{link.label}</a>)}
