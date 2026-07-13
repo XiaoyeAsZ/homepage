@@ -1,13 +1,8 @@
+import { resolvePublicationTopics, type TopicId } from "./topics";
+
 type PublicationLink = {
   label: string;
   href: string;
-};
-
-type PublicationTopicLevel = "algorithm" | "system" | "compiler" | "arch";
-
-type PublicationTopic = {
-  level: PublicationTopicLevel;
-  name: string;
 };
 
 type PublicationFrontmatter = {
@@ -16,7 +11,7 @@ type PublicationFrontmatter = {
   authors: string;
   venue: string;
   links?: PublicationLink[];
-  topics?: PublicationTopic[];
+  topics?: TopicId[];
 };
 
 type PublicationMarkdownModule = {
@@ -51,7 +46,7 @@ export const publications = Object.entries(modules)
       date: fullDate.slice(0, 7),
       fullDate,
       links: module.frontmatter.links ?? [],
-      topics: module.frontmatter.topics ?? [],
+      topics: resolvePublicationTopics(module.frontmatter.topics ?? []),
       Content: module.Content,
     };
   })

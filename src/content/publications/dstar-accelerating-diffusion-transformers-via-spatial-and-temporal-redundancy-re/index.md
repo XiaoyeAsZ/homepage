@@ -4,14 +4,10 @@ title: "DSTAR: Accelerating Diffusion Transformers via Spatial and Temporal Redu
 authors: "Chi Zhang, Jieru Zhao*, Yu Feng, Chen Zhang, Quan Chen and Minyi Guo"
 venue: "MICRO 2026, the 59th IEEE/ACM International Symposium on Microarchitecture"
 topics:
-  - level: "algorithm"
-    name: "DiT"
-  - level: "algorithm"
-    name: "Diffusion Model"
-  - level: "arch"
-    name: "Accelerator"
-  - level: "system"
-    name: "Redundancy Reduction"
+  - "dit"
+  - "diffusion-model"
+  - "accelerator"
+  - "redundancy-reduction"
 ---
 
 ## Abstract

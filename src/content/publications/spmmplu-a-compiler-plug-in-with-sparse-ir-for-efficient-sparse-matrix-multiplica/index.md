@@ -4,12 +4,9 @@ title: "SpMMPlu: A Compiler Plug-in with Sparse IR for Efficient Sparse Matrix M
 authors: "Tao Yang, Yiyuan Zhou, Qidong Tang, Feng Xu, Hui Ma, Jieru Zhao* and Li Jiang"
 venue: "DAC 2023, the 60th Design Automation Conference"
 topics:
-  - level: "compiler"
-    name: "Sparse IR"
-  - level: "compiler"
-    name: "Sparse Matrix"
-  - level: "compiler"
-    name: "Compiler Plugin"
+  - "sparse-ir"
+  - "sparse-matrix"
+  - "compiler-plugin"
 links:
   - label: "Paper"
     href: "https://dl.acm.org/doi/10.1109/DAC56929.2023.10247957"

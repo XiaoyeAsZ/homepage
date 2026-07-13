@@ -4,14 +4,10 @@ title: "AutoVCoder: A Systematic Framework for Automated Verilog Code Generation
 authors: "Mingzhe Gao, Jieru Zhao*, Zhe Lin, Wenchao Ding, Xiaofeng Hou, Yu Feng, Chao Li, Minyi Guo"
 venue: "ICCD 2024, the 42nd IEEE International Conference on Computer Design"
 topics:
-  - level: "algorithm"
-    name: "LLM"
-  - level: "compiler"
-    name: "Code Generation"
-  - level: "compiler"
-    name: "Verilog Generation"
-  - level: "arch"
-    name: "Hardware Design"
+  - "llm"
+  - "code-generation"
+  - "verilog-generation"
+  - "hardware-design"
 links:
   - label: "Paper"
     href: "https://www.computer.org/csdl/proceedings-article/iccd/2024/804000a162/23b5ttsuTC0"

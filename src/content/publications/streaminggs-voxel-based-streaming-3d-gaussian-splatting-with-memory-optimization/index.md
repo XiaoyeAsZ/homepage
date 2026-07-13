@@ -4,14 +4,10 @@ title: "StreamingGS: Voxel-Based Streaming 3D Gaussian Splatting with Memory Opt
 authors: "Chenqi Zhang, Yu Feng, Jieru Zhao*, Guangda Liu, Wenchao Ding, Chentao Wu and Minyi Guo"
 venue: "DAC 2025, the 62nd IEEE/ACM Design Automation Conference"
 topics:
-  - level: "algorithm"
-    name: "Gaussian Splatting"
-  - level: "system"
-    name: "Streaming System"
-  - level: "arch"
-    name: "Memory"
-  - level: "arch"
-    name: "Accelerator"
+  - "gaussian-splatting"
+  - "streaming-system"
+  - "memory"
+  - "accelerator"
 links:
   - label: "Paper"
     href: "https://dl.acm.org/doi/10.1109/DAC63849.2025.11132470"

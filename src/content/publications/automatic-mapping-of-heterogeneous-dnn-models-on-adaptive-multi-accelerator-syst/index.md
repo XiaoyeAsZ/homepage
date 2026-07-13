@@ -4,14 +4,10 @@ title: "Automatic Mapping of Heterogeneous DNN Models on Adaptive Multi-Accelera
 authors: "Jieru Zhao*, Guan Shen, Wenchao Ding, Quan Chen, Minyi Guo"
 venue: "TCAD 2024, IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems"
 topics:
-  - level: "algorithm"
-    name: "DNN"
-  - level: "compiler"
-    name: "Mapping"
-  - level: "arch"
-    name: "FPGA"
-  - level: "arch"
-    name: "Multi-Accelerator"
+  - "dnn"
+  - "mapping"
+  - "fpga"
+  - "multi-accelerator"
 links:
   - label: "Paper"
     href: "https://ieeexplore.ieee.org/document/10551416/"

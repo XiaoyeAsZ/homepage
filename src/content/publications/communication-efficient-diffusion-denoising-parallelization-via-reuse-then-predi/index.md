@@ -4,12 +4,9 @@ title: "Communication-Efficient Diffusion Denoising Parallelization via Reuse-th
 authors: "Kunyun Wang, Bohan Li, Kai Yu, Minyi Guo, Jieru Zhao*"
 venue: "NeurIPS 2025, the 39th Annual Conference on Neural Information Processing Systems"
 topics:
-  - level: "algorithm"
-    name: "Diffusion Model"
-  - level: "system"
-    name: "Distributed Inference"
-  - level: "system"
-    name: "Parallelization"
+  - "diffusion-model"
+  - "distributed-inference"
+  - "parallelization"
 links:
   - label: "Paper"
     href: "https://openreview.net/forum?id=ODCHMTXKHO"
