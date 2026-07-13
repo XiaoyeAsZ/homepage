@@ -20,7 +20,6 @@ const teamMembers = teamSections.flatMap((section) => section.members);
           <div class="grid three">
             {
               section.members.map((person) => {
-                const Content = person.Content;
                 return (
                   <article
                     class="card person member-card"
@@ -33,9 +32,6 @@ const teamMembers = teamSections.flatMap((section) => section.members);
                     <div>
                       <h3>{person.name}</h3>
                       <div class="meta">{person.role} · Joined {person.date.slice(0, 7)}</div>
-                      <div class="person-bio">
-                        <Content />
-                      </div>
                     </div>
                   </article>
                 );

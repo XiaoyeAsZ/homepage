@@ -515,7 +515,7 @@ p {
 }
 
 .member-modal-content {
-  --member-avatar-size: 128px;
+  --member-avatar-size: 176px;
   align-items: start;
   display: grid;
   gap: 24px;
@@ -842,8 +842,8 @@ p {
 }
 
 .person {
-  --member-avatar-size: 128px;
-  align-items: center;
+  --member-avatar-size: 176px;
+  align-items: start;
   background: rgba(255, 255, 255, 0.9);
   border: 0;
   border-radius: 8px;
@@ -851,8 +851,9 @@ p {
   cursor: pointer;
   display: grid;
   gap: 16px;
-  grid-template-columns: var(--member-avatar-size) minmax(0, 1fr);
+  justify-items: center;
   padding: 20px;
+  text-align: center;
   transition: box-shadow 160ms ease, transform 160ms ease;
 }
 
@@ -910,6 +911,7 @@ p {
   aspect-ratio: 1;
   background: #f3e5d4;
   border-radius: 8px;
+  justify-self: center;
   object-fit: cover;
   width: var(--member-avatar-size);
 }
