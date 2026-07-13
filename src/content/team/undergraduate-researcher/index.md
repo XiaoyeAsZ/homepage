@@ -2,7 +2,7 @@
 name: Undergraduate Researcher
 role: Undergraduate Student
 type: undergraduate
-order: 1
+date: 2026-05-01
 ---
 
 Add project responsibilities and interests.

@@ -6,7 +6,7 @@ type TeamFrontmatter = {
   name: string;
   role: string;
   type: TeamType;
-  order?: number;
+  date: string | Date;
 };
 
 type TeamMarkdownModule = {
@@ -42,30 +42,39 @@ const sectionConfig: Array<{ type: TeamType; title: string; description: string 
   },
 ];
 
-const memberModules = import.meta.glob<TeamMarkdownModule>("../content/team/*/index.md", {
+const memberModules = import.meta.glob<TeamMarkdownModule>("../content/team/**/index.md", {
   eager: true,
 });
 
-const avatarModules = import.meta.glob<string>("../content/team/*/avatar.{avif,gif,jpeg,jpg,png,svg,webp}", {
+const avatarModules = import.meta.glob<string>("../content/team/**/avatar.{avif,gif,jpeg,jpg,png,svg,webp}", {
   eager: true,
   import: "default",
   query: "?url",
 });
 
-const folderFromPath = (path: string) => path.split("/").at(-2) ?? "";
+const directoryFromPath = (path: string) => path.slice(0, path.lastIndexOf("/"));
+
+const formatFullDate = (value: string | Date) => {
+  if (value instanceof Date) {
+    return value.toISOString().slice(0, 10);
+  }
+
+  return String(value).slice(0, 10);
+};
 
 const members = Object.entries(memberModules)
   .map(([path, module]) => {
-    const folder = folderFromPath(path);
-    const avatarEntry = Object.entries(avatarModules).find(([avatarPath]) => folderFromPath(avatarPath) === folder);
+    const directory = directoryFromPath(path);
+    const avatarEntry = Object.entries(avatarModules).find(([avatarPath]) => directoryFromPath(avatarPath) === directory);
 
     return {
       ...module.frontmatter,
+      date: formatFullDate(module.frontmatter.date),
       Content: module.Content,
       avatar: avatarEntry?.[1] ?? pathFor("/team-placeholder.svg"),
     };
   })
-  .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || a.name.localeCompare(b.name));
+  .sort((a, b) => b.date.localeCompare(a.date) || a.name.localeCompare(b.name));
 
 export const teamSections = sectionConfig
   .map((section) => ({

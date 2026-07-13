@@ -64,7 +64,6 @@ src/content/news/new-paper-accepted/
 date: 2026-06-15
 title: New paper accepted
 summary: Short text shown on the homepage.
-order: 1
 ---
 
 Full news text shown on the News page.
@@ -79,11 +78,10 @@ src/content/publications/paper-slug/
 
 ```md
 ---
-date: 2026-07
+date: 2026-07-01
 title: Paper Title
 authors: First Author and Second Author
 venue: Conference Name
-order: 1
 links:
   - label: PDF
     href: "#"
@@ -101,10 +99,9 @@ src/content/awards/award-slug/
 
 ```md
 ---
-date: 2026-07
+date: 2026-07-01
 title: Best Paper Award
 summary: Short text shown on the homepage.
-order: 1
 ---
 
 Full award details shown on the Awards page.
@@ -125,10 +122,11 @@ src/content/team/jane-doe/
 name: Jane Doe
 role: PhD Student
 type: phd
-order: 1
+date: 2026-07-01
 ---
 
 Short biography or research description.
 ```
 
 Supported `type` values: `instructor`, `phd`, `master`, `undergraduate`, `graduated`.
+All content folders use `date: YYYY-MM-DD` for sorting. Publications and awards still render as `YYYY-MM` on the page.

@@ -25,7 +25,7 @@ import { teamSections } from "@/data/team";
                     <img src={person.avatar} alt={`${person.name} portrait`} width="480" height="480" />
                     <div>
                       <h3>{person.name}</h3>
-                      <div class="meta">{person.role}</div>
+                      <div class="meta">{person.role} · Joined {person.date.slice(0, 7)}</div>
                       <div class="person-bio">
                         <Content />
                       </div>

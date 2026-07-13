@@ -2,7 +2,6 @@ type NewsFrontmatter = {
   date: string | Date;
   title: string;
   summary: string;
-  order?: number;
 };
 
 type NewsMarkdownModule = {
@@ -24,4 +23,4 @@ export const news = Object.values(modules)
     body: module.frontmatter.summary,
     Content: module.Content,
   }))
-  .sort((a, b) => b.date.localeCompare(a.date) || (a.order ?? 999) - (b.order ?? 999));
+  .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));

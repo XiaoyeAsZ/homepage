@@ -4,13 +4,11 @@ type PublicationLink = {
 };
 
 type PublicationFrontmatter = {
-  date?: string | Date;
-  year?: string | number;
+  date: string | Date;
   title: string;
   authors: string;
   venue: string;
   links?: PublicationLink[];
-  order?: number;
 };
 
 type PublicationMarkdownModule = {
@@ -22,24 +20,24 @@ const modules = import.meta.glob<PublicationMarkdownModule>("../content/publicat
   eager: true,
 });
 
-const formatYearMonth = (value: string | number | Date | undefined) => {
+const formatFullDate = (value: string | Date) => {
   if (value instanceof Date) {
-    return value.toISOString().slice(0, 7);
+    return value.toISOString().slice(0, 10);
   }
 
-  return String(value ?? "").slice(0, 7);
+  return String(value).slice(0, 10);
 };
 
 export const publications = Object.values(modules)
-  .map((module) => ({
-    ...module.frontmatter,
-    date: formatYearMonth(module.frontmatter.date ?? module.frontmatter.year),
-    links: module.frontmatter.links ?? [],
-    Content: module.Content,
-  }))
-  .sort(
-    (a, b) =>
-      b.date.localeCompare(a.date) ||
-      (a.order ?? 999) - (b.order ?? 999) ||
-      a.title.localeCompare(b.title),
-  );
+  .map((module) => {
+    const fullDate = formatFullDate(module.frontmatter.date);
+
+    return {
+      ...module.frontmatter,
+      date: fullDate.slice(0, 7),
+      fullDate,
+      links: module.frontmatter.links ?? [],
+      Content: module.Content,
+    };
+  })
+  .sort((a, b) => b.fullDate.localeCompare(a.fullDate) || a.title.localeCompare(b.title));

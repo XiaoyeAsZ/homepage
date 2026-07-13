@@ -1,9 +1,8 @@
 ---
-date: 2026-07
+date: 2026-07-01
 title: A Placeholder Paper Title for Your Lab
 authors: First Author, Second Author, and Principal Investigator
 venue: Conference or Journal Name
-order: 1
 links:
   - label: PDF
     href: "#"
