@@ -5,6 +5,6 @@ authors: "Jieru Zhao*, Guan Shen, Wenchao Ding, Quan Chen, Minyi Guo"
 venue: "TCAD 2024, IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems"
 links:
   - label: "Paper"
-    href: "https://ieeexplore.ieee.org/iel8/43/10762795/10551416.pdf"
+    href: "https://ieeexplore.ieee.org/document/10551416/"
 ---
 

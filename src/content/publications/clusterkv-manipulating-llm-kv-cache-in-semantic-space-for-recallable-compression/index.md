@@ -5,7 +5,7 @@ authors: "Guangda Liu, Chengwei Li, Jieru Zhao*, Chenqi Zhang and Minyi Guo"
 venue: "DAC 2025, the 62nd IEEE/ACM Design Automation Conference"
 links:
   - label: "Paper"
-    href: "https://arxiv.org/pdf/2412.03213"
+    href: "https://dl.acm.org/doi/10.1109/DAC63849.2025.11132479"
   - label: "Code"
     href: "https://github.com/sjtu-zhao-lab/ClusterKV"
 ---

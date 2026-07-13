@@ -5,6 +5,6 @@ authors: "Wenchao Ding, Jieru Zhao*, Yubin Chu, Haihui Huang, Tong Qin, Chunjing
 venue: "ICRA 2023, IEEE International Conference on Robotics and Automation"
 links:
   - label: "Paper"
-    href: "https://arxiv.org/pdf/2305.01622"
+    href: "https://ieeexplore.ieee.org/document/10161326/"
 ---
 

@@ -5,6 +5,6 @@ authors: "Chenqi Zhang, Yu Feng, Jieru Zhao*, Guangda Liu, Wenchao Ding, Chentao
 venue: "DAC 2025, the 62nd IEEE/ACM Design Automation Conference"
 links:
   - label: "Paper"
-    href: "https://arxiv.org/pdf/2506.09070"
+    href: "https://dl.acm.org/doi/10.1109/DAC63849.2025.11132470"
 ---
 

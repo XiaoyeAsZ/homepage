@@ -5,6 +5,6 @@ authors: "Zefan Lin, Zedong Peng, Mingzhe Gao, Jieru Zhao*, Zhe Lin"
 venue: "ICCAD 2025, the 44th IEEE/ACM International Conference on Computer-Aided Design"
 links:
   - label: "Paper"
-    href: "https://ieeexplore.ieee.org/iel8/11240608/11240621/11240868.pdf"
+    href: "https://ieeexplore.ieee.org/document/11240868/"
 ---
 

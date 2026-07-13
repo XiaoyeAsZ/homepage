@@ -5,7 +5,7 @@ authors: "Mingzhe Gao, Jieru Zhao*, Zhe Lin, Minyi Guo"
 venue: "DATE 2024, Design, Automation and Test in Europe Conference"
 links:
   - label: "Paper"
-    href: "https://arxiv.org/pdf/2401.08696"
+    href: "https://ieeexplore.ieee.org/document/10546555/"
   - label: "Code"
     href: "https://github.com/sjtu-zhao-lab/hierarchical-gnn-for-hls"
 ---

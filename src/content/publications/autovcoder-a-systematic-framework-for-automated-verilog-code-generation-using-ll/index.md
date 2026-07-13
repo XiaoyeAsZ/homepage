@@ -5,7 +5,7 @@ authors: "Mingzhe Gao, Jieru Zhao*, Zhe Lin, Wenchao Ding, Xiaofeng Hou, Yu Feng
 venue: "ICCD 2024, the 42nd IEEE International Conference on Computer Design"
 links:
   - label: "Paper"
-    href: "https://arxiv.org/pdf/2407.18333"
+    href: "https://www.computer.org/csdl/proceedings-article/iccd/2024/804000a162/23b5ttsuTC0"
   - label: "Code"
     href: "https://github.com/sjtu-zhao-lab/AutoVCoder"
 ---

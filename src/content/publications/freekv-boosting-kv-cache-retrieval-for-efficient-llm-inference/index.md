@@ -5,7 +5,7 @@ authors: "Guangda Liu, Chengwei Li, Zhenyu Ning, Jing Lin, Yiwu Yao, Danning Ke,
 venue: "ICLR 2026, the 14th International Conference on Learning Representations"
 links:
   - label: "Paper"
-    href: "https://arxiv.org/pdf/2505.13109"
+    href: "https://openreview.net/forum?id=wXAn7orB1H"
   - label: "Code"
     href: "https://github.com/sjtu-zhao-lab/FreeKV"
 ---

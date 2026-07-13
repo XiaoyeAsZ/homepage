@@ -5,6 +5,6 @@ authors: "Tingyuan Liang, Gengjie Chen, Jieru Zhao*, Sharad Sinha, Wei Zhang"
 venue: "TCAD 2024, IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems"
 links:
   - label: "Paper"
-    href: "https://arxiv.org/pdf/2210.08682"
+    href: "https://ieeexplore.ieee.org/document/10459236/"
 ---
 

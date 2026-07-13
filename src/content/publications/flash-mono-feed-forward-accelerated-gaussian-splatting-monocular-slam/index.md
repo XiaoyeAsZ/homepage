@@ -5,6 +5,8 @@ authors: "Zicheng Zhang, Ke Wu, Xiangting Meng, Keyu Liu, Jieru Zhao* and Wencha
 venue: "ICLR 2026, the 14th International Conference on Learning Representations"
 links:
   - label: "Paper"
-    href: "https://arxiv.org/pdf/2604.03092"
+    href: "https://openreview.net/forum?id=nv3q3crc5D"
+  - label: "Project"
+    href: "https://victkk.github.io/flash-mono/"
 ---
 
