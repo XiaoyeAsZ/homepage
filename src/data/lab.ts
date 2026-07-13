@@ -1,9 +1,9 @@
 export const lab = {
-  name: "Your Lab Name",
+  name: "SJTU Zhao Lab",
   tagline: "Research at the intersection of systems, intelligence, and scalable computing.",
-  institution: "Your Department, Your University",
+  institution: "Department of Computer Science and Engineering, Shanghai Jiao Tong University",
   email: "lab@example.edu",
-  address: "Engineering Building, Room 000, City, Country",
+  address: "Software Building, No. 800 Dongchuan Road, Minhang, Shanghai, China",
   description:
     "We build reliable, efficient, and human-centered computing systems. Replace this text with a concise description of your lab's research mission.",
   researchAreas: [

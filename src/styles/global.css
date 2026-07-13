@@ -118,7 +118,9 @@ nav a[aria-current="page"] {
   color: var(--muted);
   display: grid;
   gap: 6px;
+  justify-items: center;
   padding: 32px clamp(18px, 5vw, 64px);
+  text-align: center;
 }
 
 .site-footer p {
