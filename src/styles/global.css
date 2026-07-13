@@ -846,7 +846,7 @@ p {
 }
 
 .person {
-  --member-avatar-width: 150px;
+  --member-avatar-width: 170px;
   align-items: start;
   background: rgba(255, 255, 255, 0.9);
   border: 0;
@@ -914,7 +914,7 @@ p {
 }
 
 .person img {
-  aspect-ratio: 413 / 579;
+  aspect-ratio: 4 / 5;
   background: #f3e5d4;
   border-radius: 8px;
   justify-self: center;
