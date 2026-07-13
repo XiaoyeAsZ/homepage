@@ -314,17 +314,6 @@ p {
   transform: translateY(-1px);
 }
 
-.publication-filter[data-publication-filter="all"] {
-  background: #fff;
-  border-color: rgba(200, 22, 30, 0.16);
-  color: var(--brand-strong);
-}
-
-.publication-filter[data-publication-filter="all"].is-active {
-  background: var(--brand-strong);
-  color: #fff;
-}
-
 .filter-toggle {
   background: transparent;
   border: 0;

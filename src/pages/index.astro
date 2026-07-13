@@ -13,6 +13,7 @@ const visibleTopicCount = 12;
 const visiblePublicationCount = 4;
 const hasHiddenPublicationTopics = publicationTopics.length > visibleTopicCount;
 const hasHiddenPublications = publications.length > visiblePublicationCount;
+const defaultPublicationTopicId = publicationTopics[0]?.id ?? "";
 ---
 
 <BaseLayout title={lab.name} description={lab.description}>
@@ -70,27 +71,24 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
         </div>
         <a class="link" href={pathFor("/publications/")}>All publications</a>
       </div>
-      <div class="publication-filter-list" aria-label="Publication topics">
-        <button
-          class="publication-filter is-active"
-          type="button"
-          data-publication-filter="all"
-          aria-pressed="true"
-        >
-          All
-        </button>
+      <div
+        class="publication-filter-list"
+        aria-label="Publication topics"
+        data-default-publication-topic={defaultPublicationTopicId}
+      >
         {
           publicationTopics.map((topic, index) => (
             <button
               class:list={[
                 "publication-filter",
                 `research-chip-${topic.type}`,
+                topic.id === defaultPublicationTopicId && "is-active",
               ]}
               type="button"
               data-publication-filter={topic.id}
               data-topic-filter
               data-topic-index={index}
-              aria-pressed="false"
+              aria-pressed={topic.id === defaultPublicationTopicId}
               hidden={index >= visibleTopicCount}
             >
               {topic.name}
@@ -280,6 +278,8 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
     document.querySelectorAll<HTMLElement>("[data-publication-card]");
   const publicationEmpty =
     document.querySelector<HTMLElement>("[data-publication-empty]");
+  const publicationFilterList =
+    document.querySelector<HTMLElement>("[data-default-publication-topic]");
   const topicToggle =
     document.querySelector<HTMLButtonElement>("[data-topic-toggle]");
   const publicationToggle =
@@ -288,10 +288,21 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
   const publicationModals = document.querySelectorAll<HTMLElement>("[data-pub-modal]");
   const visibleTopicLimit = 12;
   const visiblePublicationLimit = 4;
+  const defaultPublicationTopic = publicationFilterList?.dataset.defaultPublicationTopic ?? "";
   const selectedPublicationTopics = new Set<string>();
+  if (defaultPublicationTopic) {
+    selectedPublicationTopics.add(defaultPublicationTopic);
+  }
   let topicsExpanded = false;
   let publicationsExpanded = false;
   let activePublicationOpener: HTMLElement | null = null;
+
+  function resetToDefaultPublicationTopic() {
+    selectedPublicationTopics.clear();
+    if (defaultPublicationTopic) {
+      selectedPublicationTopics.add(defaultPublicationTopic);
+    }
+  }
 
   function updateTopicVisibility() {
     topicFilters.forEach((filter) => {
@@ -353,11 +364,15 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
       const topic = filter.dataset.publicationFilter ?? "all";
 
       if (topic === "all") {
-        selectedPublicationTopics.clear();
+        resetToDefaultPublicationTopic();
       } else if (selectedPublicationTopics.has(topic)) {
         selectedPublicationTopics.delete(topic);
       } else {
         selectedPublicationTopics.add(topic);
+      }
+
+      if (selectedPublicationTopics.size === 0) {
+        resetToDefaultPublicationTopic();
       }
 
       publicationsExpanded = false;
@@ -377,7 +392,7 @@ const hasHiddenPublications = publications.length > visiblePublicationCount;
       );
 
       if (activeHiddenFilter) {
-        selectedPublicationTopics.clear();
+        resetToDefaultPublicationTopic();
         publicationsExpanded = false;
         updateActivePublicationFilters();
         updatePublicationVisibility();
