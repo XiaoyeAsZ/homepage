@@ -515,7 +515,7 @@ p {
 }
 
 .member-modal-content {
-  --member-avatar-width: 240px;
+  --member-avatar-width: 180px;
   align-items: start;
   display: grid;
   gap: 24px;
@@ -846,7 +846,7 @@ p {
 }
 
 .person {
-  --member-avatar-width: 170px;
+  --member-avatar-width: 150px;
   align-items: start;
   background: rgba(255, 255, 255, 0.9);
   border: 0;
@@ -914,10 +914,10 @@ p {
 }
 
 .person img {
-  aspect-ratio: 1;
+  aspect-ratio: 3 / 4;
   background: #f3e5d4;
   border-radius: 8px;
-  height: var(--member-avatar-width);
+  height: calc(var(--member-avatar-width) * 4 / 3);
   justify-self: center;
   object-fit: cover;
   width: min(100%, var(--member-avatar-width));
