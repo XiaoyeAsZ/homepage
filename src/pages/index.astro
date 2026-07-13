@@ -1,32 +1,39 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { awards, lab, news, publications } from "@/data/lab";
+import { awards } from "@/data/awards";
+import { lab } from "@/data/lab";
+import { news } from "@/data/news";
+import { publications } from "@/data/publications";
 import { pathFor } from "@/utils/paths";
 ---
 
 <BaseLayout title={lab.name} description={lab.description}>
-  <section class="hero">
-    <div class="hero-copy">
-      <p class="eyebrow">{lab.institution}</p>
-      <h1>{lab.name}</h1>
-      <p class="lead">{lab.tagline}</p>
-      <div class="hero-actions">
-        <a class="button" href={pathFor("/publications/")}>View Publications</a>
-        <a class="button secondary" href={pathFor("/team/")}>Meet the Team</a>
+  <section class="section intro-section">
+    <div class="intro-grid">
+      <div>
+        <p class="eyebrow">{lab.institution}</p>
+        <h1>About Us</h1>
+        <p class="lead">{lab.description}</p>
+        <p>{lab.tagline}</p>
+        <div class="hero-actions">
+          <a class="button" href={pathFor("/publications/")}>View Publications</a>
+          <a class="button secondary" href={pathFor("/team/")}>Meet the Team</a>
+        </div>
       </div>
+      <aside class="contact-panel">
+        <h2>{lab.name}</h2>
+        <p>{lab.address}</p>
+        <p><a class="link" href={`mailto:${lab.email}`}>{lab.email}</a></p>
+      </aside>
     </div>
-    <figure class="hero-visual">
-      <img src={pathFor("/lab-hero.png")} alt="Abstract research lab visualization" width="1200" height="1500" />
-    </figure>
   </section>
 
-  <section class="section alt">
+  <section class="section alt compact-section">
     <div class="section-heading">
       <div>
         <h2>Research Areas</h2>
-        <p>{lab.description}</p>
+        <p>Core directions and methods that shape our current work.</p>
       </div>
-      <a class="link" href={pathFor("/about/")}>About the lab</a>
     </div>
     <div class="grid four">
       {lab.researchAreas.map((area) => <article class="card"><h3>{area}</h3></article>)}

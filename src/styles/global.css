@@ -120,24 +120,23 @@ nav a[aria-current="page"] {
 }
 
 .section,
-.page-header,
-.hero {
+.page-header {
   padding-left: clamp(18px, 5vw, 64px);
   padding-right: clamp(18px, 5vw, 64px);
 }
 
-.hero {
-  align-items: center;
-  display: grid;
-  gap: 44px;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
-  min-height: calc(100vh - 72px);
-  padding-bottom: 48px;
+.intro-section {
   padding-top: 56px;
 }
 
-.hero-copy {
-  max-width: 760px;
+.intro-grid {
+  display: grid;
+  gap: 32px;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.48fr);
+}
+
+.intro-grid > div {
+  max-width: 860px;
 }
 
 .eyebrow {
@@ -158,7 +157,7 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.35rem, 8vw, 5.8rem);
+  font-size: clamp(2.1rem, 4vw, 3.6rem);
   max-width: 920px;
 }
 
@@ -214,24 +213,32 @@ p {
   border-color: #e4b5a2;
 }
 
-.hero-visual {
-  aspect-ratio: 4 / 5;
+.contact-panel {
+  align-self: start;
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
-  min-height: 420px;
-  overflow: hidden;
+  padding: 24px;
 }
 
-.hero-visual img {
-  height: 100%;
-  object-fit: cover;
-  width: 100%;
+.contact-panel h2 {
+  font-size: 1.35rem;
+}
+
+.contact-panel p {
+  color: var(--muted);
+  margin-bottom: 0;
 }
 
 .section {
   padding-bottom: 64px;
   padding-top: 64px;
+}
+
+.compact-section {
+  padding-bottom: 48px;
+  padding-top: 48px;
 }
 
 .section.alt {
@@ -404,13 +411,8 @@ p {
     justify-content: flex-start;
   }
 
-  .hero {
+  .intro-grid {
     grid-template-columns: 1fr;
-    min-height: auto;
-  }
-
-  .hero-visual {
-    min-height: 300px;
   }
 
   .grid.four,

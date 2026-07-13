@@ -6,7 +6,6 @@ Astro skeleton for a research lab homepage, ready to deploy with GitHub Pages.
 Pages included:
 
 - Home
-- About
 - News
 - Publications
 - Awards
@@ -43,4 +42,10 @@ For a project page such as `https://username.github.io/homepage`, the workflow s
 `base` automatically. For a user page such as `https://username.github.io`, keep the repository
 name as `username.github.io`.
 
-Edit lab content in `src/data/lab.ts`.
+Edit site content in `src/data/`:
+
+- `lab.ts` for lab identity, contact, and research areas
+- `news.ts` for news items
+- `publications.ts` for papers
+- `awards.ts` for awards
+- `team.ts` for grouped team members
