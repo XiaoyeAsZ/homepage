@@ -319,6 +319,24 @@ p {
   color: #fff;
 }
 
+.filter-toggle {
+  background: transparent;
+  border: 0;
+  color: var(--brand-strong);
+  cursor: pointer;
+  font-weight: 760;
+  margin: -8px 0 22px;
+  padding: 0;
+}
+
+.filter-toggle:hover {
+  color: var(--brand);
+}
+
+.publication-list-toggle {
+  margin: 18px 0 0;
+}
+
 .home-publication-grid {
   display: grid;
   gap: 16px;

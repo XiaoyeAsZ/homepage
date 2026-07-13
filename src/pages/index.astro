@@ -9,6 +9,10 @@ import { pathFor } from "@/utils/paths";
 
 const usedTopicIds = new Set(publications.flatMap((paper) => paper.topics.map((topic) => topic.id)));
 const publicationTopics = topics.filter((topic) => usedTopicIds.has(topic.id));
+const visibleTopicCount = 12;
+const visiblePublicationCount = 4;
+const hasHiddenPublicationTopics = publicationTopics.length > visibleTopicCount;
+const hasHiddenPublications = publications.length > visiblePublicationCount;
 ---
 
 <BaseLayout title={lab.name} description={lab.description}>
@@ -76,7 +80,7 @@ const publicationTopics = topics.filter((topic) => usedTopicIds.has(topic.id));
           All
         </button>
         {
-          publicationTopics.map((topic) => (
+          publicationTopics.map((topic, index) => (
             <button
               class:list={[
                 "publication-filter",
@@ -84,20 +88,37 @@ const publicationTopics = topics.filter((topic) => usedTopicIds.has(topic.id));
               ]}
               type="button"
               data-publication-filter={topic.id}
+              data-topic-filter
+              data-topic-index={index}
               aria-pressed="false"
+              hidden={index >= visibleTopicCount}
             >
               {topic.name}
             </button>
           ))
         }
       </div>
+      {
+        hasHiddenPublicationTopics && (
+          <button
+            class="filter-toggle"
+            type="button"
+            data-topic-toggle
+            aria-expanded="false"
+          >
+            Show more topics
+          </button>
+        )
+      }
       <div class="home-publication-grid" data-publication-list>
         {
-          publications.map((paper) => (
+          publications.map((paper, index) => (
             <article
               class="home-publication-card"
               data-publication-card
+              data-publication-index={index}
               data-topic-ids={paper.topics.map((topic) => topic.id).join(" ")}
+              hidden={index >= visiblePublicationCount}
             >
               <div class="meta">{paper.date}</div>
               <h3>{paper.title}</h3>
@@ -121,6 +142,18 @@ const publicationTopics = topics.filter((topic) => usedTopicIds.has(topic.id));
       <p class="publication-empty" data-publication-empty hidden>
         No publications match this topic yet.
       </p>
+      {
+        hasHiddenPublications && (
+          <button
+            class="filter-toggle publication-list-toggle"
+            type="button"
+            data-publication-toggle
+            aria-expanded="false"
+          >
+            Show more publications
+          </button>
+        )
+      }
     </div>
   </section>
 
@@ -196,37 +229,114 @@ const publicationTopics = topics.filter((topic) => usedTopicIds.has(topic.id));
 <script>
   const publicationFilters =
     document.querySelectorAll<HTMLButtonElement>("[data-publication-filter]");
+  const topicFilters =
+    document.querySelectorAll<HTMLButtonElement>("[data-topic-filter]");
   const publicationCards =
     document.querySelectorAll<HTMLElement>("[data-publication-card]");
   const publicationEmpty =
     document.querySelector<HTMLElement>("[data-publication-empty]");
+  const topicToggle =
+    document.querySelector<HTMLButtonElement>("[data-topic-toggle]");
+  const publicationToggle =
+    document.querySelector<HTMLButtonElement>("[data-publication-toggle]");
+  const visibleTopicLimit = 12;
+  const visiblePublicationLimit = 4;
+  let selectedPublicationTopic = "all";
+  let topicsExpanded = false;
+  let publicationsExpanded = false;
+
+  function updateTopicVisibility() {
+    topicFilters.forEach((filter) => {
+      const index = Number(filter.dataset.topicIndex ?? "0");
+      filter.hidden = !topicsExpanded && index >= visibleTopicLimit;
+    });
+
+    if (topicToggle) {
+      topicToggle.textContent = topicsExpanded ? "Hide topics" : "Show more topics";
+      topicToggle.setAttribute("aria-expanded", String(topicsExpanded));
+    }
+  }
+
+  function setActivePublicationFilter(activeFilter: HTMLButtonElement) {
+    publicationFilters.forEach((item) => {
+      const isActive = item === activeFilter;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-pressed", String(isActive));
+    });
+  }
+
+  function updatePublicationVisibility() {
+    let renderedCount = 0;
+
+    publicationCards.forEach((card) => {
+      const topics = card.dataset.topicIds?.split(" ") ?? [];
+      const matchesTopic =
+        selectedPublicationTopic === "all" || topics.includes(selectedPublicationTopic);
+      const withinLimit = publicationsExpanded || renderedCount < visiblePublicationLimit;
+      const isVisible = matchesTopic && withinLimit;
+
+      if (matchesTopic) {
+        renderedCount += 1;
+      }
+
+      card.hidden = !isVisible;
+    });
+
+    if (publicationEmpty) {
+      publicationEmpty.hidden = renderedCount > 0;
+    }
+
+    if (publicationToggle) {
+      publicationToggle.hidden = renderedCount <= visiblePublicationLimit;
+      publicationToggle.textContent = publicationsExpanded
+        ? "Hide publications"
+        : "Show more publications";
+      publicationToggle.setAttribute("aria-expanded", String(publicationsExpanded));
+    }
+  }
 
   publicationFilters.forEach((filter) => {
     filter.addEventListener("click", () => {
-      const selectedTopic = filter.dataset.publicationFilter ?? "all";
-      let visibleCount = 0;
-
-      publicationFilters.forEach((item) => {
-        const isActive = item === filter;
-        item.classList.toggle("is-active", isActive);
-        item.setAttribute("aria-pressed", String(isActive));
-      });
-
-      publicationCards.forEach((card) => {
-        const topics = card.dataset.topicIds?.split(" ") ?? [];
-        const isVisible = selectedTopic === "all" || topics.includes(selectedTopic);
-
-        card.hidden = !isVisible;
-        if (isVisible) {
-          visibleCount += 1;
-        }
-      });
-
-      if (publicationEmpty) {
-        publicationEmpty.hidden = visibleCount > 0;
-      }
+      selectedPublicationTopic = filter.dataset.publicationFilter ?? "all";
+      publicationsExpanded = false;
+      setActivePublicationFilter(filter);
+      updatePublicationVisibility();
     });
   });
+
+  topicToggle?.addEventListener("click", () => {
+    topicsExpanded = !topicsExpanded;
+
+    if (!topicsExpanded) {
+      const activeHiddenFilter = Array.from(topicFilters).find(
+        (filter) =>
+          filter.classList.contains("is-active") &&
+          Number(filter.dataset.topicIndex ?? "0") >= visibleTopicLimit,
+      );
+
+      if (activeHiddenFilter) {
+        const allFilter = document.querySelector<HTMLButtonElement>(
+          '[data-publication-filter="all"]',
+        );
+        selectedPublicationTopic = "all";
+        publicationsExpanded = false;
+        if (allFilter) {
+          setActivePublicationFilter(allFilter);
+        }
+        updatePublicationVisibility();
+      }
+    }
+
+    updateTopicVisibility();
+  });
+
+  publicationToggle?.addEventListener("click", () => {
+    publicationsExpanded = !publicationsExpanded;
+    updatePublicationVisibility();
+  });
+
+  updateTopicVisibility();
+  updatePublicationVisibility();
 
   const joinModal =
     document.querySelector<HTMLElement>("[data-join-modal]");
