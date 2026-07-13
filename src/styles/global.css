@@ -917,6 +917,7 @@ p {
   aspect-ratio: 1;
   background: #f3e5d4;
   border-radius: 8px;
+  height: var(--member-avatar-width);
   justify-self: center;
   object-fit: cover;
   width: min(100%, var(--member-avatar-width));
