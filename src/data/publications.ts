@@ -1,3 +1,4 @@
+import { directoryFromPath, resolveContentImage } from "@/utils/contentImages";
 import { resolvePublicationTopics, type TopicId } from "./topics";
 
 type PublicationLink = {
@@ -12,6 +13,8 @@ type PublicationFrontmatter = {
   venue: string;
   links?: PublicationLink[];
   topics?: TopicId[];
+  image?: string;
+  imageAlt?: string;
 };
 
 type PublicationMarkdownModule = {
@@ -22,6 +25,15 @@ type PublicationMarkdownModule = {
 const modules = import.meta.glob<PublicationMarkdownModule>("../content/publications/*/index.md", {
   eager: true,
 });
+
+const imageModules = import.meta.glob<string>(
+  "../content/publications/**/*.{avif,gif,jpeg,jpg,png,svg,webp}",
+  {
+    eager: true,
+    import: "default",
+    query: "?url",
+  },
+);
 
 const formatFullDate = (value: string | Date) => {
   if (value instanceof Date) {
@@ -38,6 +50,7 @@ const slugFromPath = (path: string) => {
 
 export const publications = Object.entries(modules)
   .map(([path, module]) => {
+    const directory = directoryFromPath(path);
     const fullDate = formatFullDate(module.frontmatter.date);
 
     return {
@@ -47,6 +60,8 @@ export const publications = Object.entries(modules)
       fullDate,
       links: module.frontmatter.links ?? [],
       topics: resolvePublicationTopics(module.frontmatter.topics ?? []),
+      image: resolveContentImage(imageModules, directory, module.frontmatter.image),
+      imageAlt: module.frontmatter.imageAlt ?? module.frontmatter.title,
       Content: module.Content,
     };
   })

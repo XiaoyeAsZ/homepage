@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title desc">
+  <title id="title">Lab website launch preview</title>
+  <desc id="desc">Abstract red and gold interface cards representing a lab homepage launch.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff7f4"/>
+      <stop offset="1" stop-color="#f4e7d2"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" x2="1">
+      <stop offset="0" stop-color="#c8161e"/>
+      <stop offset="1" stop-color="#8f141b"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="420" rx="36" fill="url(#bg)"/>
+  <rect x="76" y="76" width="488" height="268" rx="22" fill="#ffffff" opacity="0.94"/>
+  <rect x="76" y="76" width="488" height="52" rx="22" fill="url(#red)"/>
+  <circle cx="114" cy="102" r="8" fill="#f7d68a"/>
+  <circle cx="142" cy="102" r="8" fill="#f2b880"/>
+  <circle cx="170" cy="102" r="8" fill="#ffffff" opacity="0.8"/>
+  <rect x="116" y="168" width="176" height="20" rx="10" fill="#8f141b"/>
+  <rect x="116" y="206" width="312" height="12" rx="6" fill="#d9c9c0"/>
+  <rect x="116" y="232" width="256" height="12" rx="6" fill="#e5d8cf"/>
+  <rect x="116" y="274" width="98" height="34" rx="17" fill="#c8161e"/>
+  <rect x="340" y="158" width="116" height="116" rx="18" fill="#f6efe8"/>
+  <path d="M374 236h68l-18-34-16 22-14-18z" fill="#c8161e" opacity="0.72"/>
+  <circle cx="386" cy="188" r="12" fill="#c8a45d"/>
+  <path d="M482 158c32 20 48 48 48 84" fill="none" stroke="#c8a45d" stroke-width="10" stroke-linecap="round"/>
+</svg>

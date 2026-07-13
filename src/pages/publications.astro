@@ -49,35 +49,52 @@ const formatMonth = (month: string) => {
             <div class="entry-card-list">
               {papers.map((paper) => (
                 <article
-                  class="publication entry-card publication-card"
+                  class:list={[
+                    "publication",
+                    "entry-card",
+                    "publication-card",
+                    paper.image && "has-media",
+                  ]}
                   role="button"
                   tabindex="0"
                   data-pub-open={paper.slug}
                   aria-controls={`publication-modal-${paper.slug}`}
                 >
                   <div class="meta">{paper.date}</div>
-                  <div>
-                    <h3>
-                      {paper.title}
-                    </h3>
-                    <p>{paper.authors}</p>
-                    <p>{paper.venue}</p>
+                  <div class="entry-card-main">
+                    <div>
+                      <h3>
+                        {paper.title}
+                      </h3>
+                      <p>{paper.authors}</p>
+                      <p>{paper.venue}</p>
+                      {
+                        paper.topics.length > 0 && (
+                          <div class="topic-list compact-topic-list" aria-label="Publication topics">
+                            {paper.topics.map((topic) => (
+                              <span class:list={["topic-pill", `topic-pill-${topic.type}`]}>
+                                {topic.name}
+                              </span>
+                            ))}
+                          </div>
+                        )
+                      }
+                      {
+                        paper.links.length > 0 && (
+                          <div class="pub-links">
+                            {paper.links.map((link) => <a href={link.href}>{link.label}</a>)}
+                          </div>
+                        )
+                      }
+                    </div>
                     {
-                      paper.topics.length > 0 && (
-                        <div class="topic-list compact-topic-list" aria-label="Publication topics">
-                          {paper.topics.map((topic) => (
-                            <span class:list={["topic-pill", `topic-pill-${topic.type}`]}>
-                              {topic.name}
-                            </span>
-                          ))}
-                        </div>
-                      )
-                    }
-                    {
-                      paper.links.length > 0 && (
-                        <div class="pub-links">
-                          {paper.links.map((link) => <a href={link.href}>{link.label}</a>)}
-                        </div>
+                      paper.image && (
+                        <img
+                          class="entry-card-image"
+                          src={paper.image}
+                          alt={paper.imageAlt}
+                          loading="lazy"
+                        />
                       )
                     }
                   </div>

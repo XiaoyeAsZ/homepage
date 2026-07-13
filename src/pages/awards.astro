@@ -50,13 +50,25 @@ const formatMonth = (month: string) => {
               {awardsInMonth.map((award) => {
                 const Content = award.Content;
                 return (
-                  <article class="award entry-card award-card">
+                  <article class:list={["award", "entry-card", "award-card", award.image && "has-media"]}>
                     <div class="meta">{award.date}</div>
-                    <div>
-                      <h3>{award.title}</h3>
-                      <div class="entry-content">
-                        <Content />
+                    <div class="entry-card-main">
+                      <div>
+                        <h3>{award.title}</h3>
+                        <div class="entry-content">
+                          <Content />
+                        </div>
                       </div>
+                      {
+                        award.image && (
+                          <img
+                            class="entry-card-image"
+                            src={award.image}
+                            alt={award.imageAlt}
+                            loading="lazy"
+                          />
+                        )
+                      }
                     </div>
                   </article>
                 );

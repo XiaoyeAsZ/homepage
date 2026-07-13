@@ -50,11 +50,25 @@ const formatMonth = (month: string) => {
               {items.map((item) => {
                 const Content = item.Content;
                 return (
-                  <article class="entry-card news-card">
-                    <div class="meta">{item.date}</div>
-                    <h3>{item.title}</h3>
-                    <div class="entry-content">
-                      <Content />
+                  <article class:list={["entry-card", "news-card", item.image && "has-media"]}>
+                    <div class="entry-card-main">
+                      <div>
+                        <div class="meta">{item.date}</div>
+                        <h3>{item.title}</h3>
+                        <div class="entry-content">
+                          <Content />
+                        </div>
+                      </div>
+                      {
+                        item.image && (
+                          <img
+                            class="entry-card-image"
+                            src={item.image}
+                            alt={item.imageAlt}
+                            loading="lazy"
+                          />
+                        )
+                      }
                     </div>
                   </article>
                 );
