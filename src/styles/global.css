@@ -451,6 +451,14 @@ p {
   margin-bottom: 0;
 }
 
+.entry-content {
+  color: var(--muted);
+}
+
+.entry-content p {
+  margin-bottom: 0;
+}
+
 @media (max-width: 1000px) {
   :root {
     --content-width: min(100%, 760px);

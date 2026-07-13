@@ -10,15 +10,20 @@ import { awards } from "@/data/awards";
   />
   <section class="section">
     {
-      awards.map((award) => (
-        <article class="award">
-          <div class="meta">{award.year}</div>
-          <div>
-            <h2>{award.title}</h2>
-            <p>{award.description}</p>
-          </div>
-        </article>
-      ))
+      awards.map((award) => {
+        const Content = award.Content;
+        return (
+          <article class="award">
+            <div class="meta">{award.year}</div>
+            <div>
+              <h2>{award.title}</h2>
+              <div class="entry-content">
+                <Content />
+              </div>
+            </div>
+          </article>
+        );
+      })
     }
   </section>
 </BaseLayout>

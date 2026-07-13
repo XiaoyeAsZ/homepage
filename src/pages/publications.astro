@@ -10,19 +10,25 @@ import { publications } from "@/data/publications";
   />
   <section class="section">
     {
-      publications.map((paper) => (
-        <article class="publication">
-          <div class="meta">{paper.year}</div>
-          <div>
-            <h2>{paper.title}</h2>
-            <p>{paper.authors}</p>
-            <p>{paper.venue}</p>
-            <div class="pub-links">
-              {paper.links.map((link) => <a href={link.href}>{link.label}</a>)}
+      publications.map((paper) => {
+        const Content = paper.Content;
+        return (
+          <article class="publication">
+            <div class="meta">{paper.year}</div>
+            <div>
+              <h2>{paper.title}</h2>
+              <p>{paper.authors}</p>
+              <p>{paper.venue}</p>
+              <div class="entry-content">
+                <Content />
+              </div>
+              <div class="pub-links">
+                {paper.links.map((link) => <a href={link.href}>{link.label}</a>)}
+              </div>
             </div>
-          </div>
-        </article>
-      ))
+          </article>
+        );
+      })
     }
   </section>
 </BaseLayout>

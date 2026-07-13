@@ -45,10 +45,68 @@ name as `username.github.io`.
 Edit site content in `src/data/`:
 
 - `lab.ts` for lab identity, contact, and research areas
-- `news.ts` for news items
-- `publications.ts` for papers
-- `awards.ts` for awards
+- `src/content/news/<item-folder>/index.md` for news items
+- `src/content/publications/<paper-folder>/index.md` for papers
+- `src/content/awards/<award-folder>/index.md` for awards
 - `src/content/team/<member-folder>/index.md` and `avatar.*` for team members
+
+News folders:
+
+```text
+src/content/news/new-paper-accepted/
+  index.md
+```
+
+```md
+---
+date: 2026-06-15
+title: New paper accepted
+summary: Short text shown on the homepage.
+order: 1
+---
+
+Full news text shown on the News page.
+```
+
+Publication folders:
+
+```text
+src/content/publications/paper-slug/
+  index.md
+```
+
+```md
+---
+year: 2026
+title: Paper Title
+authors: First Author and Second Author
+venue: Conference Name
+order: 1
+links:
+  - label: PDF
+    href: "#"
+---
+
+Optional abstract or project note.
+```
+
+Award folders:
+
+```text
+src/content/awards/award-slug/
+  index.md
+```
+
+```md
+---
+year: 2026
+title: Best Paper Award
+summary: Short text shown on the homepage.
+order: 1
+---
+
+Full award details shown on the Awards page.
+```
 
 Team member folders:
 

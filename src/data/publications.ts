@@ -1,19 +1,36 @@
-export const publications = [
-  {
-    year: "2026",
-    title: "A Placeholder Paper Title for Your Lab",
-    authors: "First Author, Second Author, and Principal Investigator",
-    venue: "Conference or Journal Name",
-    links: [
-      { label: "PDF", href: "#" },
-      { label: "Code", href: "#" },
-    ],
-  },
-  {
-    year: "2025",
-    title: "Another Representative Publication Entry",
-    authors: "Student Name and Collaborator Name",
-    venue: "Workshop or Symposium Name",
-    links: [{ label: "Project", href: "#" }],
-  },
-];
+type PublicationLink = {
+  label: string;
+  href: string;
+};
+
+type PublicationFrontmatter = {
+  year: string | number;
+  title: string;
+  authors: string;
+  venue: string;
+  links?: PublicationLink[];
+  order?: number;
+};
+
+type PublicationMarkdownModule = {
+  frontmatter: PublicationFrontmatter;
+  Content: any;
+};
+
+const modules = import.meta.glob<PublicationMarkdownModule>("../content/publications/*/index.md", {
+  eager: true,
+});
+
+export const publications = Object.values(modules)
+  .map((module) => ({
+    ...module.frontmatter,
+    year: String(module.frontmatter.year),
+    links: module.frontmatter.links ?? [],
+    Content: module.Content,
+  }))
+  .sort(
+    (a, b) =>
+      Number(b.year) - Number(a.year) ||
+      (a.order ?? 999) - (b.order ?? 999) ||
+      a.title.localeCompare(b.title),
+  );

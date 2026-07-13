@@ -11,13 +11,18 @@ import { news } from "@/data/news";
   <section class="section">
     <div class="timeline">
       {
-        news.map((item) => (
-          <article class="card">
-            <div class="meta">{item.date}</div>
-            <h2>{item.title}</h2>
-            <p>{item.body}</p>
-          </article>
-        ))
+        news.map((item) => {
+          const Content = item.Content;
+          return (
+            <article class="card">
+              <div class="meta">{item.date}</div>
+              <h2>{item.title}</h2>
+              <div class="entry-content">
+                <Content />
+              </div>
+            </article>
+          );
+        })
       }
     </div>
   </section>
