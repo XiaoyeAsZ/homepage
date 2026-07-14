@@ -9,7 +9,6 @@ topics:
   - "accelerator"
   - "redundancy-reduction"
 image: cover.svg
-imageAlt: DSTAR framework placeholder
 ---
 
 ## Abstract
