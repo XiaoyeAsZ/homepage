@@ -1028,6 +1028,11 @@ p {
   margin-bottom: 0;
 }
 
+.entry-content img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .topic-list {
   display: flex;
   flex-wrap: wrap;
