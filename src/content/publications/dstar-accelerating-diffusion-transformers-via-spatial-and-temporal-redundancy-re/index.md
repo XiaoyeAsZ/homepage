@@ -27,6 +27,6 @@ The placeholder above can be replaced by the final framework figure. A complete 
 
 ## Architecture
 
-![DSTAR architecture placeholder](./arch.svg)
+![DSTAR architecture video placeholder](./arch-video.svg)
 
-This placeholder can be replaced by the final architecture diagram. Use this section to describe the execution flow, hardware/software partitioning, data reuse strategy, and how spatial-temporal redundancy reduction is mapped onto the target acceleration architecture.
+This animated placeholder can be replaced by the final architecture video. Use this section to describe the execution flow, hardware/software partitioning, data reuse strategy, and how spatial-temporal redundancy reduction is mapped onto the target acceleration architecture.
