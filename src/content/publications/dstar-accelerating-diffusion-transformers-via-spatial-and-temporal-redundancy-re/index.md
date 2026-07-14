@@ -25,3 +25,9 @@ DSTAR focuses on efficient Diffusion Transformer inference. The core idea is to 
 ![DSTAR framework placeholder](./cover.svg)
 
 The placeholder above can be replaced by the final framework figure. A complete project page can later add the method pipeline, qualitative results, speedup comparison, and links to paper, code, slides, or video.
+
+## Architecture
+
+![DSTAR architecture placeholder](./arch.svg)
+
+This placeholder can be replaced by the final architecture diagram. Use this section to describe the execution flow, hardware/software partitioning, data reuse strategy, and how spatial-temporal redundancy reduction is mapped onto the target acceleration architecture.
