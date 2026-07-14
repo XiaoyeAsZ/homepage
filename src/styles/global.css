@@ -492,6 +492,22 @@ p {
 .publication-modal {
   max-height: min(86vh, 820px);
   max-width: min(920px, 100%);
+  overflow: hidden;
+  padding: 0;
+}
+
+.publication-modal .modal-close {
+  z-index: 2;
+}
+
+.publication-modal-scroll {
+  display: grid;
+  gap: 22px;
+  max-height: min(86vh, 820px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(24px, 4vw, 38px);
+  scrollbar-gutter: stable;
 }
 
 .publication-modal-header {
